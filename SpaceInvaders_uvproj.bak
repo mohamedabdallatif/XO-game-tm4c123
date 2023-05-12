@@ -432,6 +432,41 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>gpio_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\gpio_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>interrupt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interrupt.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>interface</GroupName>
+          <Files>
+            <File>
+              <FileName>draw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interface\draw.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>headers</GroupName>
+          <Files>
+            <File>
+              <FileName>draw.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\draw.h</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>

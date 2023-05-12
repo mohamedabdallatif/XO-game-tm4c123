@@ -87,7 +87,6 @@ int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
   Random_Init(1);
   Nokia5110_Init();
-  drawGrid();
 
   Delay100ms(50);              // delay 5 sec at 50 MHz
 
