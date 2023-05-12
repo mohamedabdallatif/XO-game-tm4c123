@@ -443,7 +443,7 @@
             <File>
               <FileName>interrupt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\interrupt.c</FilePath>
+              <FilePath>.\drivers\interrupt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -464,6 +464,21 @@
               <FileName>draw.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\headers\draw.h</FilePath>
+            </File>
+            <File>
+              <FileName>check_winner.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\check_winner.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>logic</GroupName>
+          <Files>
+            <File>
+              <FileName>check_winner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\logic\check_winner.c</FilePath>
             </File>
           </Files>
         </Group>

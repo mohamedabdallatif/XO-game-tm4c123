@@ -1,9 +1,6 @@
-#include "./tm4c123gh6pm.h"
-
-#include "..\\./headers/gpio_driver.h"
-
-#include "..\\./headers/draw.h"
-
+#include "../headers/tm4c123gh6pm.h"
+#include "../headers/gpio_driver.h"
+#include "../headers/draw.h"
 
 int delay;
 void PortE_Init(void){
@@ -16,20 +13,20 @@ void PortE_Init(void){
   GPIO_PORTE_DIR_R = 0x1;          //  PE0 OUTPUT PE1 INPUT 
   GPIO_PORTE_AFSEL_R = 0x00;        //  no alternate function
   GPIO_PORTE_DEN_R =0x1F;        //  enable digital pins PE0,PE1  
-GPIO_PORTF_PUR_R |= 0x1;  	   //enable pullup resistors on PE1
- GPIO_PORTE_IS_R &= ~(1<<1);             //EDGE SENSE
+	GPIO_PORTF_PUR_R |= 0x1;  	   //enable pullup resistors on PE1
+	GPIO_PORTE_IS_R &= ~(1<<1);             //EDGE SENSE
 	GPIO_PORTE_IBE_R &= ~(1<<1);            //SINGLE EDGE
 	GPIO_PORTE_IEV_R |= (1<<1);              //RAISING EDGE
 	GPIO_PORTE_ICR_R = (1<<1);     // CLEAR FLAGS ON PE1
 	GPIO_PORTE_IM_R |= (1<<1);			// ARM INTERRUPT PE1
 	NVIC_PRI1_R =(5<<5);             //PRIORITY 5
-NVIC_EN0_R =(1<<4);          //ENABLE INTERRUPT 4
-EnableInterrupts(); 
+	NVIC_EN0_R =(1<<4);          //ENABLE INTERRUPT 4
+	EnableInterrupts(); 
 }
 
 
 void PortF_Init(void){                                               
-   SYSCTL_RCGC2_R |= 0x00000020;     // 1) F clock
+  SYSCTL_RCGC2_R |= 0x00000020;     // 1) F clock
   delay = SYSCTL_RCGC2_R;           // delay   
   GPIO_PORTF_LOCK_R = 0x4C4F434B;   // 2) unlock PortF PF0  
   GPIO_PORTF_CR_R = 0x1F;           // allow changes to PF4-0       
@@ -46,6 +43,6 @@ void PortF_Init(void){
   GPIO_PORTF_IM_R |= 0x11;     // ARM INTERRUPT PF0,PF4
   NVIC_PRI7_R = (NVIC_PRI7_R&0xFF00FFFF)|0x00A00000;  //PRIORITY 5
   NVIC_EN0_R = 0x40000000;          //ENABLE INTERRUPT 30
- EnableInterrupts();          
+	EnableInterrupts();          
 }
 

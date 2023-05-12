@@ -470,6 +470,16 @@
               <FileType>5</FileType>
               <FilePath>.\headers\check_winner.h</FilePath>
             </File>
+            <File>
+              <FileName>gpio_driver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\gpio_driver.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm4c123gh6pm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\tm4c123gh6pm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

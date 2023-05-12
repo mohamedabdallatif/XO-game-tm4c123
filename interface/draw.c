@@ -3,11 +3,11 @@
 
 
 int i,j,k;
- char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char turn = 'X';
 int cursor = 1;
 void drawGrid(void){
-	k = 1;
+	  k = 1;
     Nokia5110_ClearBuffer();
 	  Nokia5110_DisplayBuffer();
 	  for(i = 0 ;i < 8 ;i++){

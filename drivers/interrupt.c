@@ -1,6 +1,6 @@
 #include "..\\./headers/draw.h"
 #include "..\\./headers/check_winner.h"
-#include "./tm4c123gh6pm.h"
+#include "../headers/tm4c123gh6pm.h"
 extern char matrix[];
 extern char turn;
 extern int cursor;
