@@ -1,0 +1,39 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Keil\Labware\test_project\SpaceInvaders.uvproj
+Project File Date:  03/17/2023
+
+<h2>Output:</h2>
+Build target 'SpaceInvaders'
+compiling gpio_driver.c...
+drivers\gpio_driver.c(58): error:  #20: identifier "matrix" is undefined
+                if(matrix[cursor]==' '){
+drivers\gpio_driver.c(58): error:  #20: identifier "cursor" is undefined
+                if(matrix[cursor]==' '){
+drivers\gpio_driver.c(59): error:  #20: identifier "turn" is undefined
+                if (turn =='X'){
+drivers\gpio_driver.c: 0 warnings, 3 errors
+".\SpaceInvaders.axf" - 3 Error(s), 0 Warning(s).
+Target not created
+</pre>
+</body>
+</html>
+d gpio_driver.o).
+.\SpaceInvaders.axf: Error: L6200E: Symbol turn multiply defined (by draw.o and gpio_driver.o).
+.\SpaceInvaders.axf: Error: L6200E: Symbol cursor multiply defined (by draw.o and gpio_driver.o).
+.\SpaceInvaders.axf: Error: L6200E: Symbol i multiply defined (by draw.o and gpio_driver.o).
+.\SpaceInvaders.axf: Error: L6200E: Symbol j multiply defined (by draw.o and gpio_driver.o).
+.\SpaceInvaders.axf: Error: L6200E: Symbol k multiply defined (by draw.o and gpio_driver.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 7 error messages.
+".\SpaceInvaders.axf" - 7 Error(s), 2 Warning(s).
+Target not created
+
+Target not created
+ssages.
+".\SpaceInvaders.axf" - 7 Error(s), 3 Warning(s).
+Target not created

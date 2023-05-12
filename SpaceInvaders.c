@@ -77,43 +77,11 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Timer2_Init(unsigned long period);
 void Delay100ms(unsigned long count); // time delay in 0.1 seconds
-void drawGrid(void);
 unsigned long TimerCount;
 unsigned long Semaphore;
 
 
-int i,j,k;
- char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
-char turn = 'X';
 
-void drawGrid(void){
-	k = 1;
-    Nokia5110_ClearBuffer();
-	  Nokia5110_DisplayBuffer();
-	  for(i = 0 ;i < 8 ;i++){
-		Nokia5110_SetCursor(i, 1);
-		Nokia5110_OutString("-");
-		Nokia5110_SetCursor(i, 3);
-		Nokia5110_OutString("-");
-	}
-for(j = 0 ;j < 5 ;j+=2){
-	Nokia5110_SetCursor(2, j);
-	Nokia5110_OutString("|");
-	Nokia5110_SetCursor(5, j);
-	Nokia5110_OutString("|");	
-	}
-  for(i = 0 ;i < 5;i+=2) {
-	for(j = 0 ;j < 8 ;j+=3){
-			Nokia5110_SetCursor(j, i);
-			Nokia5110_OutChar(matrix[k++]);
-	}
-}
-	
-Nokia5110_SetCursor(8,0);
-			Nokia5110_OutString("Turn");
-			Nokia5110_SetCursor(9,1);
-			Nokia5110_OutChar(turn);
-}
 
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
