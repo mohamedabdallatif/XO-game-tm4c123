@@ -3,3 +3,5 @@
 .\spaceinvaders.o: Nokia5110.h
 .\spaceinvaders.o: Random.h
 .\spaceinvaders.o: TExaS.h
+.\spaceinvaders.o: headers/gpio_driver.h
+.\spaceinvaders.o: headers/draw.h

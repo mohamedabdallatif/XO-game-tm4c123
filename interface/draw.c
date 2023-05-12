@@ -1,6 +1,4 @@
-
 #include "../Nokia5110.h"
-
 
 int i,j,k;
 char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};

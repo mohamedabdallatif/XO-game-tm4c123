@@ -1,4 +1,7 @@
+#include "../headers/tm4c123gh6pm.h"
 #include "../headers/Timer2.h"
+unsigned long TimerCount;
+unsigned long Semaphore;
 
 void Timer2_Init(unsigned long period){ 
   unsigned long volatile delay;

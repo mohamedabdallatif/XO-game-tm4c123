@@ -1,2 +1,1 @@
-void check_winner (char turn){
-}
+void check_winner (char turn){}

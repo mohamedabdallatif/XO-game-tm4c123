@@ -72,26 +72,26 @@
 #include "Nokia5110.h"
 #include "Random.h"
 #include "TExaS.h"
+#include "headers/gpio_driver.h"
+#include "headers/draw.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
-void Timer2_Init(unsigned long period);
-void Delay100ms(unsigned long count); // time delay in 0.1 seconds
-unsigned long TimerCount;
-unsigned long Semaphore;
-
-
-
 
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
   Random_Init(1);
   Nokia5110_Init();
+	PortF_Init();
+	PortE_Init();
+	Nokia5110_Init(); // intialization Nokia Lcd
+	Nokia5110_ClearBuffer(); // Clear buffer for nokia lcd
+	Nokia5110_DisplayBuffer(); // draw buffer
+	drawGrid();
 	
   while(1){
   }
 
 }
-
 
 
