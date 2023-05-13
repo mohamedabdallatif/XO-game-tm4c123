@@ -31,4 +31,24 @@ void GPIOPortF_Handler(void){
 		}	
 		drawGrid();		
 	}
+	else if(GPIO_PORTF_RIS_R &(1<<1)){
+		GPIO_PORTF_ICR_R =(1<<1);
+		if(matrix[cursor]==' '){
+		if (turn =='X'){
+			matrix[cursor]='X';
+			turn='O';
+		}
+		else{ 
+			matrix[cursor]='O';
+		  turn='X';
+		}
+		drawGrid();
+		moves++;
+		check_winner(turn);
+	}	
+}
+}
+
+void GPIOPortE_Handler(void){
+//Leds code
 }
