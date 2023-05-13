@@ -1,2 +1,0 @@
-void drawGrid(void);
-
