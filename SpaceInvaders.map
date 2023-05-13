@@ -770,7 +770,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
          2          0          0          0          0        395   check_winner.o
-       468        112          0          4          0       1086   gpio_driver.o
+       468        112          0          4          0       1082   gpio_driver.o
        308         34          0          0          0        936   interrupt.o
        640         72        480          0        504       5982   nokia5110.o
        388         44          0         48          0       1732   run.o
@@ -780,7 +780,7 @@ Image component sizes
        108         22          0          8          0        721   timer2.o
 
     ----------------------------------------------------------------------
-      3770       1160        874        112       1584      29523   Object Totals
+      3770       1160        874        112       1584      29519   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          2          0          0          0   (incl. Padding)
 
@@ -829,8 +829,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4042       1176        874        112       1680      28695   Grand Totals
-      4042       1176        874        112       1680      28695   ELF Image Totals
+      4042       1176        874        112       1680      28691   Grand Totals
+      4042       1176        874        112       1680      28691   ELF Image Totals
       4042       1176        874        112          0          0   ROM Totals
 
 ==============================================================================
