@@ -1,5 +1,5 @@
-#include "..\\./headers/Run.h"
-#include "..\\./headers/check_winner.h"
+#include "../headers/Run.h"
+#include "../headers/check_winner.h"
 #include "../headers/tm4c123gh6pm.h"
 #include "../headers/Timer2.h"
 
@@ -31,8 +31,12 @@ void GPIOPortF_Handler(void){
 		}	
 		drawGrid();		
 	}
-	else if(GPIO_PORTF_RIS_R &(1<<1)){
-		GPIO_PORTF_ICR_R =(1<<1);
+}
+
+void GPIOPortE_Handler(void){
+if(GPIO_PORTE_RIS_R &(1<<1)){
+		Timer2_Init(20);
+		GPIO_PORTE_ICR_R =(1<<1);
 		if(matrix[cursor]==' '){
 		if (turn =='X'){
 			matrix[cursor]='X';
@@ -47,8 +51,4 @@ void GPIOPortF_Handler(void){
 		check_winner(turn);
 	}	
 }
-}
-
-void GPIOPortE_Handler(void){
-//Leds code
 }
