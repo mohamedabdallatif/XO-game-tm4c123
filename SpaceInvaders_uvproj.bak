@@ -170,7 +170,7 @@
             <Capability>1</Capability>
             <DriverSelection>4097</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>BIN\lmidk-agdi.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -411,11 +411,6 @@
               <FilePath>.\startup.s</FilePath>
             </File>
             <File>
-              <FileName>Nokia5110.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Nokia5110.c</FilePath>
-            </File>
-            <File>
               <FileName>random.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\random.s</FilePath>
@@ -424,11 +419,6 @@
               <FileName>SpaceInvaders.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SpaceInvaders.c</FilePath>
-            </File>
-            <File>
-              <FileName>TExaS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TExaS.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -444,6 +434,26 @@
               <FileName>interrupt.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\drivers\interrupt.c</FilePath>
+            </File>
+            <File>
+              <FileName>Timer2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\Timer2.c</FilePath>
+            </File>
+            <File>
+              <FileName>Run.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\Run.c</FilePath>
+            </File>
+            <File>
+              <FileName>Nokia5110.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\Nokia5110.c</FilePath>
+            </File>
+            <File>
+              <FileName>TExaS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\TExaS.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -479,6 +489,26 @@
               <FileName>tm4c123gh6pm.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\headers\tm4c123gh6pm.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\Timer2.h</FilePath>
+            </File>
+            <File>
+              <FileName>interrupt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\interrupt.h</FilePath>
+            </File>
+            <File>
+              <FileName>Run.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\Run.h</FilePath>
+            </File>
+            <File>
+              <FileName>TExaS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\TExaS.h</FilePath>
             </File>
           </Files>
         </Group>

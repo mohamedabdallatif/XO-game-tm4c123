@@ -1,11 +1,12 @@
 --cpu Cortex-M4
 ".\startup.o"
-".\nokia5110.o"
 ".\random.o"
 ".\spaceinvaders.o"
-".\texas.o"
 ".\gpio_driver.o"
 ".\interrupt.o"
+".\timer2.o"
+".\nokia5110.o"
+".\texas.o"
 ".\draw.o"
 ".\check_winner.o"
 C:\Keil\ARM\RV31\LIB\RTX_CM3.LIB
