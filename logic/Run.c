@@ -2,7 +2,6 @@
 #include "../headers/Nokia5110.h"
 #include "../headers/TExaS.h"
 #include "../headers/gpio_driver.h"
-#include "../headers/draw.h"
 
 int i = 0, j = 0, position = 1, current_cursor = 1, moves=0;
 char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
