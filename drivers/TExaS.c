@@ -27,7 +27,7 @@
  http://users.ece.utexas.edu/~valvano/
  */
 
-#include "TExaS.h"
+#include "../headers/TExaS.h"
 
 // Timer4A implements scope
 // Timer5A periodic interrupt implements voltmeter

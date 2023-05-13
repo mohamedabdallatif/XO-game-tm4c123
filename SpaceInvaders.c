@@ -68,10 +68,10 @@
 // SSI0Clk       (SCLK, pin 7) connected to PA2
 // back light    (LED, pin 8) not connected, consists of 4 white LEDs which draw ~80mA total
 
-#include "/headers/Nokia5110.h"
-#include "/headers/TExaS.h"
-#include "/headers/gpio_driver.h"
-#include "/headers/Run.h"
+#include "headers/Nokia5110.h"
+#include "headers/TExaS.h"
+#include "headers/gpio_driver.h"
+#include "headers/Run.h"
 
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
