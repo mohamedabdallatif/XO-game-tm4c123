@@ -88,9 +88,10 @@ int main(void){
 	Nokia5110_ClearBuffer(); // Clear buffer for nokia lcd
 	Nokia5110_DisplayBuffer(); // draw buffer
 	drawGrid();
-	
+	EnableInterrupts();
   while(1){
-  }
+		WaitForInterrupt();
+	}
 
 }
 

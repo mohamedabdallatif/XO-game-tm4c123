@@ -1,7 +1,7 @@
 #include "../Nokia5110.h"
 
 int i,j,k;
-char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+char matrix[10]={'a',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char turn = 'X';
 int cursor = 1;
 void drawGrid(void){

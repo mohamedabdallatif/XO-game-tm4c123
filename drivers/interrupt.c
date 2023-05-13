@@ -32,3 +32,40 @@ void GPIOPortE_Handler (void){
 }
 
 }
+
+void GPIOPortF_Handler(void)
+	{
+	if (GPIO_PORTF_RIS_R &(1<<4))  
+	{
+	//	Delay100ms(5);
+		
+	
+		GPIO_PORTF_ICR_R|= (1<<4);
+
+		cursor--;
+		while(matrix[cursor]!=' '){
+			
+		cursor--;
+		if(cursor<1) cursor=9;
+		}
+		
+		drawGrid();
+		
+		
+	}
+	 else if(GPIO_PORTF_RIS_R &(1<<0)){
+				
+//Delay100ms(5);
+		 GPIO_PORTF_ICR_R |= (1<<0);
+		 cursor++;
+		while(matrix[cursor]!=' '){
+			
+			cursor++;
+		if(cursor>9) cursor=1;
+		}
+		
+		drawGrid();
+		
+		
+	}
+}
