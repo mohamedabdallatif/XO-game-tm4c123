@@ -58,3 +58,26 @@ void drawGrid(void){
 void Xo_Init(void){
 	
 }
+<<<<<<< HEAD
+=======
+int n;
+void UART(){
+    while(1){
+			UART_OutString("\n\rInput:");
+			n = UART_InChar();
+			UART_OutChar(n);
+			UART_OutString("\n\r");
+			switch(n){
+				case 'd':
+				Timer2_Init(20);
+				cursor++;
+			while(matrix[cursor]!=' '){
+				cursor++;
+		if(cursor>9) cursor=1;
+		}	
+		drawGrid();
+			}
+		}
+}
+
+>>>>>>> 7203b184c9fed846b90ab5048eeee6079625cbae
