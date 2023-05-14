@@ -26,7 +26,7 @@
 // U0Tx (PA1) connected to serial port on PC
 // Ground connected ground in the USB cable
 
-#include "tm4c123gh6pm.h"
+#include "../headers/tm4c123gh6pm.h"
 #include "..\\./headers/UART.h"
 #include "..\\./headers/Run.h"
 #include "..\\./headers/Timer2.h"

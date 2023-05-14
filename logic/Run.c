@@ -64,9 +64,9 @@ int n;
 void UART(){
     while(1){
 			UART_OutString("\n\rInput:");
-     n = UART_InChar();
-   UART_OutChar(n);
-		UART_OutString("\n\r");
+			n = UART_InChar();
+			UART_OutChar(n);
+			UART_OutString("\n\r");
 			switch(n){
 				case 'd':
 				Timer2_Init(20);
