@@ -2,6 +2,11 @@
 #include "..\\./headers/tm4c123gh6pm.h"
 #include "..\\./headers/Leds.h"
 #include "..\\./headers/Timer2.h"
+<<<<<<< HEAD
+=======
+
+int i;
+>>>>>>> 707314317cce651f3745b3ea6ec2184fa2f6015d
 
 // Turn on Specific led..
 void Set_Led(int Led_Pin){
@@ -21,7 +26,11 @@ void Start_Game(int Led_Pin){
 	Timer2_Init(15);
 	Set_Led(4);
 	Timer2_Init(15);
+<<<<<<< HEAD
 	Clear_ALL();
+=======
+	Clear_All();
+>>>>>>> 707314317cce651f3745b3ea6ec2184fa2f6015d
 }
 
 // used in Start_Game ---> Turn off all leds
