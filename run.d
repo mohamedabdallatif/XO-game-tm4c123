@@ -3,4 +3,3 @@
 .\run.o: logic\../headers/Nokia5110.h
 .\run.o: logic\../headers/TExaS.h
 .\run.o: logic\../headers/gpio_driver.h
-.\run.o: logic\../headers/draw.h
