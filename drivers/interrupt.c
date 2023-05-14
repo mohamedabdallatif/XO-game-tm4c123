@@ -11,7 +11,7 @@ extern int moves;
 void GPIOPortF_Handler(void){
 	if (GPIO_PORTF_RIS_R &(1<<4))  
 	{
-		Timer2_Init(20);
+		Timer2_Init(25);
 		GPIO_PORTF_ICR_R|= (1<<4);
 		/*cursor--;
 		while(matrix[cursor]!=' '){
@@ -49,7 +49,7 @@ void GPIOPortF_Handler(void){
 
 void GPIOPortE_Handler(void){
 if(GPIO_PORTE_RIS_R &(1<<1)){
-		Timer2_Init(20);
+		Timer2_Init(25);
 		GPIO_PORTE_ICR_R =(1<<1);
 		if(matrix[cursor]==' '){
 		if (turn =='X'){

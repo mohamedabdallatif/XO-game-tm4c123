@@ -30,6 +30,7 @@
 #include "..\\./headers/UART.h"
 #include "..\\./headers/Run.h"
 #include "..\\./headers/Timer2.h"
+#include "..\\./headers/check_winner.h"
 
 extern char matrix[10];
 extern char turn;
@@ -188,3 +189,48 @@ void UART_OutDistance(unsigned long n){
   UART_ConvertDistance(n);      // convert using your function
   UART_OutString(String);       // output using your function
 }
+
+int n;
+void UART(){
+    while(1){
+			UART_OutString("\n\rInput:");
+     n = UART_InChar();
+   UART_OutChar(n);
+		UART_OutString("\n\r");
+			switch(n){
+				case 'd':
+				Timer2_Init(20);
+				cursor++;
+			while(matrix[cursor]!=' '){
+				cursor++;
+		if(cursor>9) cursor=1;
+		}	
+		drawGrid();
+		break;
+				case 'a':
+					cursor--;
+		while(matrix[cursor]!=' '){
+			cursor--;
+			if(cursor<1) cursor=9;
+		}
+		drawGrid();
+		break;
+				case 's':
+					if(matrix[cursor]==' '){
+		if (turn =='X'){
+			matrix[cursor]='X';
+			turn='O';
+		}
+		else{ 
+			matrix[cursor]='O';
+		  turn='X';
+		}
+		drawGrid();
+		moves++;
+		check_winner(turn);
+	}
+break;					
+			}
+		}
+}
+

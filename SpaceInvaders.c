@@ -73,17 +73,13 @@
 #include "headers/gpio_driver.h"
 #include "headers/Run.h"
 #include "headers/UART.h"
-
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
-  Nokia5110_Init();
-	PortF_Init();
+		PortF_Init();
 	PortE_Init();
-	Nokia5110_Init(); // intialization Nokia Lcd
-	Nokia5110_ClearBuffer(); // Clear buffer for nokia lcd
-	Nokia5110_DisplayBuffer(); // draw buffer
-	drawGrid();
-	UART();
+	  Nokia5110_Init();
+  drawGrid();
+  UART();	
   while(1){
 	}
 

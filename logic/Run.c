@@ -2,11 +2,9 @@
 #include "../headers/Nokia5110.h"
 #include "../headers/TExaS.h"
 #include "../headers/gpio_driver.h"
-#include "../headers/UART.h"
-#include "../headers/Timer2.h"
 
 int i = 0, j = 0, position = 1, current_cursor = 1, moves=0;
-char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+char matrix[10]={'a',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char turn = 'X', x = 'X', o = 'O';
 int scoreX = 0, scoreO = 0, cursor = 1;
 
@@ -60,23 +58,3 @@ void drawGrid(void){
 void Xo_Init(void){
 	
 }
-int n;
-void UART(){
-    while(1){
-			UART_OutString("\n\rInput:");
-     n = UART_InChar();
-   UART_OutChar(n);
-		UART_OutString("\n\r");
-			switch(n){
-				case 'd':
-				Timer2_Init(20);
-				cursor++;
-			while(matrix[cursor]!=' '){
-				cursor++;
-		if(cursor>9) cursor=1;
-		}	
-		drawGrid();
-			}
-		}
-}
-
