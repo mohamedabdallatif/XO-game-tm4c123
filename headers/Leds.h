@@ -2,5 +2,5 @@
 void Start_Game(int);
 void Set_Led(int);
 void Clear_Led(int);
-void Clear_All(void);
+void Clear_ALL(void);
 void Flash(int);

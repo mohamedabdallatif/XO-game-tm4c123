@@ -3,3 +3,4 @@
 .\spaceinvaders.o: headers/TExaS.h
 .\spaceinvaders.o: headers/gpio_driver.h
 .\spaceinvaders.o: headers/Run.h
+.\spaceinvaders.o: headers/UART.h

@@ -454,22 +454,10 @@
         </Group>
         <Group>
           <GroupName>interface</GroupName>
-          <Files>
-            <File>
-              <FileName>draw.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\interface\draw.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>headers</GroupName>
           <Files>
-            <File>
-              <FileName>draw.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\headers\draw.h</FilePath>
-            </File>
             <File>
               <FileName>check_winner.h</FileName>
               <FileType>5</FileType>
@@ -514,6 +502,11 @@
               <FileName>check_winner.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\logic\check_winner.c</FilePath>
+            </File>
+            <File>
+              <FileName>Run.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\logic\Run.c</FilePath>
             </File>
           </Files>
         </Group>

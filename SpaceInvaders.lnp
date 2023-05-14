@@ -7,6 +7,7 @@
 ".\timer2.o"
 ".\nokia5110.o"
 ".\texas.o"
+".\uart.o"
 ".\check_winner.o"
 ".\run.o"
 C:\Keil\ARM\RV31\LIB\RTX_CM3.LIB
