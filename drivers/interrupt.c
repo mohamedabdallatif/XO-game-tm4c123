@@ -13,12 +13,26 @@ void GPIOPortF_Handler(void){
 	{
 		Timer2_Init(20);
 		GPIO_PORTF_ICR_R|= (1<<4);
-		cursor--;
+		/*cursor--;
 		while(matrix[cursor]!=' '){
 			cursor--;
 			if(cursor<1) cursor=9;
 		}
 		drawGrid();
+		*/
+		if(matrix[cursor]==' '){
+		if (turn =='X'){
+			matrix[cursor]='X';
+			turn='O';
+		}
+		else{ 
+			matrix[cursor]='O';
+		  turn='X';
+		}
+		drawGrid();
+		moves++;
+		check_winner(turn);
+	}	
 	}
 	else if(GPIO_PORTF_RIS_R &(1<<0)){	
 		Timer2_Init(20);
