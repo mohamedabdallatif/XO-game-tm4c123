@@ -450,6 +450,11 @@
               <FileType>1</FileType>
               <FilePath>.\drivers\TExaS.c</FilePath>
             </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\UART.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

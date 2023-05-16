@@ -129,7 +129,7 @@ char character;
 // Output String (NULL termination)
 // Input: pointer to a NULL-terminated string to be transferred
 // Output: none
-void UART_OutString(unsigned char * buffer){
+void UART_OutString(unsigned char* buffer){
 // as part of Lab 11 implement this function
    while(*buffer){
 	   UART_OutChar(*(buffer++));
@@ -227,7 +227,7 @@ void UART(){
 		}
 		drawGrid();
 		moves++;
-		check_winner(turn);
+		check_winner(matrix, turn);
 	}
 break;					
 			}
