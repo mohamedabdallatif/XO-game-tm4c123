@@ -75,9 +75,9 @@
 #include "headers/UART.h"
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
-		PortF_Init();
+	PortF_Init();
 	PortE_Init();
-	  Nokia5110_Init();
+	Nokia5110_Init();
   drawGrid();
   UART();	
   while(1){

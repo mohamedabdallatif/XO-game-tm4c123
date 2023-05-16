@@ -190,8 +190,8 @@ void UART_OutDistance(unsigned long n){
   UART_OutString(String);       // output using your function
 }
 
-int n;
-void UART(){
+void UART(void){
+	int n;
     while(1){
 			UART_OutString("\n\rInput:");
      n = UART_InChar();
@@ -219,6 +219,7 @@ void UART(){
 					if(matrix[cursor]==' '){
 		if (turn =='X'){
 			matrix[cursor]='X';
+			
 			turn='O';
 		}
 		else{ 
@@ -227,7 +228,6 @@ void UART(){
 		}
 		drawGrid();
 		moves++;
-		check_winner(matrix, turn);
 	}
 break;					
 			}
