@@ -1,7 +1,7 @@
 Dependencies for Project 'XOGame', Target 'SpaceInvaders': (DO NOT MODIFY !)
 F (.\startup.s)(0x6464C7AD)(--cpu Cortex-M4 --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
 F (.\random.s)(0x6464C7AD)(--cpu Cortex-M4 --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\random.lst --xref -o .\random.o --depend .\random.d)
-F (.\XoGame.c)(0x6464E2BD)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\xogame.o --omf_browse .\xogame.crf --depend .\xogame.d)
+F (.\XoGame.c)(0x6464E3C4)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\xogame.o --omf_browse .\xogame.crf --depend .\xogame.d)
 I (headers/Nokia5110.h)(0x6464C7AD)
 I (headers/TExaS.h)(0x6464C7AD)
 I (headers/gpio_driver.h)(0x6464C7AD)
@@ -26,7 +26,7 @@ F (.\drivers\Nokia5110.c)(0x6464C7AD)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0
 I (drivers\../headers/Nokia5110.h)(0x6464C7AD)
 F (.\drivers\TExaS.c)(0x6464C7AD)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\texas.o --omf_browse .\texas.crf --depend .\texas.d)
 I (drivers\../headers/TExaS.h)(0x6464C7AD)
-F (.\drivers\UART.c)(0x6464DE63)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
+F (.\drivers\UART.c)(0x6464E3A5)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
 I (drivers\../headers/tm4c123gh6pm.h)(0x6464C7AD)
 I (drivers\..\\./headers/UART.h)(0x6464C7AD)
 I (drivers\..\\./headers/Run.h)(0x6464DE63)
@@ -48,7 +48,7 @@ F (.\headers\TExaS.h)(0x6464C7AD)()
 F (.\headers\UART.h)(0x6464C7AD)()
 F (.\headers\Leds.h)(0x6464D304)()
 F (.\logic\check_winner.c)(0x6464C7AD)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\check_winner.o --omf_browse .\check_winner.crf --depend .\check_winner.d)
-F (.\logic\Run.c)(0x6464E0FA)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\run.o --omf_browse .\run.crf --depend .\run.d)
+F (.\logic\Run.c)(0x6464E3D8)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\run.o --omf_browse .\run.crf --depend .\run.d)
 I (logic\../headers/tm4c123gh6pm.h)(0x6464C7AD)
 I (logic\../headers/Nokia5110.h)(0x6464C7AD)
 I (logic\../headers/TExaS.h)(0x6464C7AD)
