@@ -64,83 +64,87 @@ void UART_OutChar(unsigned char data){ //print
 void UART(void){
 int n;
 while(1){
+	
+	if (turn =='X') Set_Led(0);
+	else Set_Led(2);
+	
 	UART_OutString("\n\rInput:");
 	n = UART_InChar();
 	UART_OutChar(n);
 	UART_OutString("\n\r");
 	switch(n){
 		case 'd':
-			Timer2_Init(20);
+			Timer2_Init(10);
 			cursor++;
 			if(cursor>9) cursor=1;	
 			drawGrid();
 			break;
 		case 'a':
-			Timer2_Init(20);
+			Timer2_Init(10);
 			cursor--;
 			if(cursor<1) cursor=9;
 			drawGrid();
 			break;
 		case ' ':
-			Timer2_Init(20);
+			Timer2_Init(10);
 			if(matrix[cursor]==' '){
-			if (turn =='X'){
-			Set_Led(0);
-			matrix[cursor]='X';
-			won = check_winner (matrix, turn);
-				if (won == 1){
-					Flash(0);//red led on
-					Timer2_Init(100);
-					Clear_Led(0);//red led off
-					Nokia5110_ClearBuffer();
-					Nokia5110_DisplayBuffer();
-					Nokia5110_SetCursor(3, 2);
-					Nokia5110_OutChar(turn);
-					Nokia5110_OutString("-Player");
-					Nokia5110_SetCursor(4, 3);
-					Nokia5110_OutString("wins");
-					Timer2_Init(100);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(100);
-					return;
-				}
-			turn='O';
-			}
-			else{ 
-			Set_Led(2);
-			matrix[cursor]='O';
-			won = check_winner (matrix, turn);
-				if (won == 1){
-					Flash(2);//yellow led on
-					Timer2_Init(100);
-					Clear_Led(2);//red led off
-					Nokia5110_ClearBuffer();
-					Nokia5110_DisplayBuffer();
-					Nokia5110_SetCursor(3, 2);
-					Nokia5110_OutChar(turn);
-					Nokia5110_OutString("-Player");
-					Nokia5110_SetCursor(4, 3);
-					Nokia5110_OutString("wins");
-					Timer2_Init(100);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(100);
-					return;
-				}
-			Clear_Led(2);
-			turn='X';
-			}
-			drawGrid();
-			moves++;
-			}
-			break;	
+					if (turn =='X'){
+						matrix[cursor]='X';
+						won = check_winner (matrix, turn);
+						if (won == 1){
+							Flash(0);//red led on
+							Timer2_Init(100);
+							Clear_Led(0);//red led off
+							Nokia5110_ClearBuffer();
+							Nokia5110_DisplayBuffer();
+							Nokia5110_SetCursor(3, 2);
+							Nokia5110_OutChar(turn);
+							Nokia5110_OutString("-Player");
+							Nokia5110_SetCursor(4, 3);
+							Nokia5110_OutString("wins");
+							Timer2_Init(100);
+							Nokia5110_DisplayBuffer();
+							Timer2_Init(100);
+							return;
+						}
+						Clear_Led(0);
+						turn='O';
+					}
+				else{ 
+					Set_Led(2);
+						matrix[cursor]='O';
+						won = check_winner (matrix, turn);
+						if (won == 1){
+							Flash(2);//red led on
+							Timer2_Init(100);
+							Clear_Led(2);//red led off
+							Nokia5110_ClearBuffer();
+							Nokia5110_DisplayBuffer();
+							Nokia5110_SetCursor(3, 2);
+							Nokia5110_OutChar(turn);
+							Nokia5110_OutString("-Player");
+							Nokia5110_SetCursor(4, 3);
+							Nokia5110_OutString("wins");
+							Timer2_Init(100);
+							Nokia5110_DisplayBuffer();
+							Timer2_Init(100);
+							return;
+						}
+						Clear_Led(2);
+					turn='X';
+					}
+					drawGrid();
+					moves++;
+					}
+					break;	
 		case 'w':
-			Timer2_Init(20);
+			Timer2_Init(10);
 			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up
 			else	cursor -= 3;
 			drawGrid();	
 			break;
 		case 's':
-			Timer2_Init(20);
+			Timer2_Init(10);
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code up
 			else	cursor += 3;
 			drawGrid();	
