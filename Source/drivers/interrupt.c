@@ -10,11 +10,17 @@
 extern char matrix[10];
 extern char turn;
 extern int cursor;
-extern int moves;
+int moves;
 char win ;
 int flag =0;
 
 void GPIOPortF_Handler(void){
+	if(GPIO_PORTF_RIS_R &(1<<4) && flag ==3){
+		
+	}
+	if(GPIO_PORTF_RIS_R & (1<<0) && flag ==3){
+	  
+	}
 	if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
 			 PortE_Init();
 			 PortB_Init();
@@ -24,10 +30,10 @@ void GPIOPortF_Handler(void){
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
 			PortE_Init();
 			drawGrid();
-			flag=1;
+			flag=2;
 			UART();
 	} 
-	else if (GPIO_PORTF_RIS_R &(1<<4) && flag!=0)  {
+	else if (GPIO_PORTF_RIS_R &(1<<4) && flag==1)  {
 			Timer2_Init(20);
 			GPIO_PORTF_ICR_R|= (1<<4);
 			cursor--;
@@ -35,7 +41,7 @@ void GPIOPortF_Handler(void){
 			drawGrid();
 	}
 		
-	else if(GPIO_PORTF_RIS_R &(1<<0) && flag!=0){	
+	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){	
 			Timer2_Init(20);
 			GPIO_PORTF_ICR_R |= (1<<0);
 			cursor++;
@@ -45,7 +51,7 @@ void GPIOPortF_Handler(void){
 	}
 
 void GPIOPortB_Handler(void){
-		if (GPIO_PORTB_RIS_R &(1<<0) && flag!=0)  
+		if (GPIO_PORTB_RIS_R &(1<<0) && flag==1)  
 		{
 			Timer2_Init(20);
 			GPIO_PORTB_ICR_R|= (1<<0);
@@ -54,7 +60,7 @@ void GPIOPortB_Handler(void){
 			drawGrid();	
 			}
 		
-		else if(GPIO_PORTB_RIS_R &(1<<1) && flag !=0){	
+		else if(GPIO_PORTB_RIS_R &(1<<1) && flag ==1){	
 			Timer2_Init(20);
 			GPIO_PORTB_ICR_R |= (1<<1);
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
@@ -62,7 +68,7 @@ void GPIOPortB_Handler(void){
 			drawGrid();		
 		}
 	
-	else if(GPIO_PORTB_RIS_R&(1<<1) && flag !=0){	
+	else if(GPIO_PORTB_RIS_R&(1<<1) && flag ==1){	
 		Timer2_Init(20);
 		GPIO_PORTB_ICR_R |= (1<<1);
 		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
@@ -72,7 +78,7 @@ void GPIOPortB_Handler(void){
 }
 
 void GPIOPortE_Handler(void){
-if (GPIO_PORTE_RIS_R &(1<<1) && flag!=0)  
+if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
 		Timer2_Init(20);
 		GPIO_PORTE_ICR_R|= (1<<1);
@@ -125,7 +131,7 @@ if (GPIO_PORTE_RIS_R &(1<<1) && flag!=0)
 			}
 			drawGrid();
 			moves++;
-			if (!win){
+			if (!win&&moves==9){
 					Flash(3);//red led on
 					Timer2_Init(50);
 					Clear_Led(3);//red led off
