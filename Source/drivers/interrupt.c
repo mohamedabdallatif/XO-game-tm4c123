@@ -3,15 +3,29 @@
 #include "../headers/tm4c123gh6pm.h"
 #include "../headers/Timer2.h"
 #include "../headers/Nokia5110.h"
+#include "../headers/gpio_driver.h"
+#include "../headers/UART.h"
 
 extern char matrix[10];
 extern char turn;
 extern int cursor;
 extern int moves;
 char win ;
+int flag =0;
 
 void GPIOPortF_Handler(void){
-	if (GPIO_PORTF_RIS_R &(1<<4))  
+	if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
+	   PortE_Init();
+	   PortB_Init();
+     drawGrid();
+		flag =1;
+	}
+	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
+		 drawGrid();
+		 flag=1;
+	   UART();
+	} 
+	else if (GPIO_PORTF_RIS_R &(1<<4) && flag!=0)  
 	{
 		Timer2_Init(20);
 		GPIO_PORTF_ICR_R|= (1<<4);
@@ -20,7 +34,7 @@ void GPIOPortF_Handler(void){
 		drawGrid();
 		}
 		
-	else if(GPIO_PORTF_RIS_R &(1<<0)){	
+	else if(GPIO_PORTF_RIS_R &(1<<0) && flag!=0){	
 		Timer2_Init(20);
 		GPIO_PORTF_ICR_R |= (1<<0);
 		cursor++;

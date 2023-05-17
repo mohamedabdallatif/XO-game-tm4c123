@@ -87,7 +87,7 @@ void result(){
 	 }
 	 else if (GPIO_PORTF_DATA_R & (1<<4)){
 	    UART();
-
+      
 	 }
 }
 

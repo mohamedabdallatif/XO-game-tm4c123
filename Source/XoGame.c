@@ -23,11 +23,15 @@ int main(void){
 	PortE_Init();
 	PortB_Init();
 	Nokia5110_Init();
+<<<<<<< HEAD
 	//Xo_Init();
 	//choose();
 	drawGrid();
 	UART();
 	result();
+=======
+	Xo_Init();
+>>>>>>> f3f7ad9c9924b57e86cb11590aa46013a7fc3049
 	while(1){
 	}
 
