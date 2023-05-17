@@ -16,6 +16,7 @@ void drawGrid(void){
 	if(start==0){
 		Start_Game();
 		Clear_ALL();
+		start++;
 	}
 	Clear_Led_PF1();
 	Nokia5110_ClearBuffer();
@@ -64,10 +65,24 @@ void drawGrid(void){
 			Nokia5110_OutChar(turn);
 
 }
-
-void choose(void){
+void result(){
+		Nokia5110_ClearBuffer();
+		Nokia5110_DisplayBuffer();
+		Nokia5110_SetCursor(2, 2);
+		Nokia5110_OutString("X-");
+		Nokia5110_SetCursor(2, 3);
+		Nokia5110_OutString("Y-");
+		Nokia5110_SetCursor(6, 2);
+		Nokia5110_OutUDec(scoreX);
+		Nokia5110_SetCursor(6, 3);
+		Nokia5110_OutUDec(scoreO);
+		Timer2_Init(100);
+		Nokia5110_DisplayBuffer();
+		Timer2_Init(100);
+}
+/*void choose(void){
    if(GPIO_PORTF_DATA_R & 1){
-	    PortE_Init();
+	   PortE_Init();
 		 PortB_Init();
 	 }
 	 else if (GPIO_PORTF_DATA_R & (1<<4)){
@@ -77,10 +92,9 @@ void choose(void){
 }
 
 void Xo_Init(void){
-	 Nokia5110_SetCursor(4,1);
-			Nokia5110_OutString("1.Kit");
-			Nokia5110_SetCursor(4,2);
-			Nokia5110_OutString("2.UART");
+	Nokia5110_SetCursor(4,1);
+	Nokia5110_OutString("1.Kit");
+	Nokia5110_SetCursor(4,2);
+	Nokia5110_OutString("2.UART");
 }
-
-
+*/
