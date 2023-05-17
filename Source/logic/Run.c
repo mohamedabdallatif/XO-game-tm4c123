@@ -80,16 +80,6 @@ void result(){
 		Nokia5110_DisplayBuffer();
 		Timer2_Init(100);
 }
-/*void choose(void){
-   if(GPIO_PORTF_DATA_R & 1){
-	   PortE_Init();
-		 PortB_Init();
-	 }
-	 else if (GPIO_PORTF_DATA_R & (1<<4)){
-	    UART();
-      
-	 }
-}
 
 void Xo_Init(void){
 	Nokia5110_SetCursor(4,1);
@@ -97,4 +87,4 @@ void Xo_Init(void){
 	Nokia5110_SetCursor(4,2);
 	Nokia5110_OutString("2.UART");
 }
-*/
+
