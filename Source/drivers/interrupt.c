@@ -10,7 +10,7 @@
 extern char matrix[10];
 extern char turn;
 extern int cursor;
-extern int moves;
+int moves;
 char win ;
 int flag =0;
 
@@ -117,7 +117,7 @@ if (GPIO_PORTE_RIS_R &(1<<1) && flag!=0)
 			}
 			drawGrid();
 			moves++;
-			if (!win){
+			if (!win&&moves==9){
 					Flash(3);//red led on
 					Timer2_Init(50);
 					Clear_Led(3);//red led off

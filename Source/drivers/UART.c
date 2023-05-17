@@ -135,6 +135,26 @@ while(1){
 					}
 			  	drawGrid();
 					moves++;
+					if (!won&&moves==9){
+						Flash(3);//red led on
+						Timer2_Init(30);
+						Clear_Led(3);//red led off
+						Nokia5110_ClearBuffer();
+						Nokia5110_DisplayBuffer();
+						Nokia5110_SetCursor(2, 2);
+						Nokia5110_OutString("NO");
+						Nokia5110_DisplayBuffer();
+						Timer2_Init(6);
+						Nokia5110_SetCursor(3, 3);
+						Nokia5110_OutString("ONE");
+						Nokia5110_DisplayBuffer();
+						Timer2_Init(6);
+						Nokia5110_SetCursor(4, 4);
+						Nokia5110_OutString("WIN!!");
+						Nokia5110_DisplayBuffer();
+						Timer2_Init(30);
+						return;
+			}
 					}
 					break;	
 		case 'w':
