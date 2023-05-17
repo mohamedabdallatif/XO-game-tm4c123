@@ -22,8 +22,8 @@ void GPIOPortF_Handler(void){
 	}
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
 		 drawGrid();
+		 flag=1;
 	   UART();
-flag=1;		
 	} 
 	else if (GPIO_PORTF_RIS_R &(1<<4) && flag!=0)  
 	{
