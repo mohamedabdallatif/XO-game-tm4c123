@@ -4,6 +4,8 @@
 #include "../headers/gpio_driver.h"
 #include "../headers/UART.h"
 #include "../headers/Timer2.h"
+#include "../headers/Leds.h"
+
 
 int i = 0, j = 0, position = 1, current_cursor = 1, moves=0;
 char matrix[10]={'a',' ',' ',' ',' ',' ',' ',' ',' ',' '};
@@ -11,6 +13,7 @@ char turn = 'X', x = 'X', o = 'O';
 int scoreX = 0, scoreO = 0, cursor = 1;
 
 void drawGrid(void){
+	Clear_Led_PF1();
 	Nokia5110_ClearBuffer();
 	Nokia5110_DisplayBuffer();
 	current_cursor=1,position=1;
@@ -55,7 +58,9 @@ void drawGrid(void){
 			Nokia5110_OutString("Turn");
 			Nokia5110_SetCursor(9,1);
 			Nokia5110_OutChar(turn);
+
 }
+
 
 void Xo_Init(void){
 	

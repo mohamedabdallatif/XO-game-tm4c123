@@ -2,11 +2,8 @@
 #include "..\\./headers/tm4c123gh6pm.h"
 #include "..\\./headers/Leds.h"
 #include "..\\./headers/Timer2.h"
-<<<<<<< HEAD
-=======
 
-int i;
->>>>>>> 707314317cce651f3745b3ea6ec2184fa2f6015d
+int l;
 
 // Turn on Specific led..
 void Set_Led(int Led_Pin){
@@ -17,7 +14,6 @@ void Set_Led(int Led_Pin){
 void Clear_Led(int Led_Pin){
 	GPIO_PORTE_DATA_R &= ~(1 << Led_Pin);
 }
-
 // using only when starting game or replay..
 void Start_Game(int Led_Pin){
 	Set_Led(2);
@@ -26,11 +22,6 @@ void Start_Game(int Led_Pin){
 	Timer2_Init(15);
 	Set_Led(4);
 	Timer2_Init(15);
-<<<<<<< HEAD
-	Clear_ALL();
-=======
-	Clear_All();
->>>>>>> 707314317cce651f3745b3ea6ec2184fa2f6015d
 }
 
 // used in Start_Game ---> Turn off all leds
@@ -47,13 +38,19 @@ if (O wins)								----> Flash Led 2
 if (someone plays in filled place)		----> Flash Led 3
 */
 void Flash(int Led_Pin){
-	int i;
-	for (i = 0; i < 3; i++){
+	int l;
+	for (l = 0; l < 3; l++){
 		Set_Led(Led_Pin);
 		Timer2_Init(25);
 		Clear_Led(Led_Pin);
 		Timer2_Init(25);
 	}
+}
+
+
+// Turn off red led 
+void Clear_Led_PF1(){
+	GPIO_PORTF_DATA_R &= ~(1 << 1);
 }
 
 

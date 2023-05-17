@@ -191,46 +191,59 @@ void UART_OutDistance(unsigned long n){
 }
 
 void UART(void){
-	int n;
-    while(1){
-			UART_OutString("\n\rInput:");
-     n = UART_InChar();
-   UART_OutChar(n);
-		UART_OutString("\n\r");
-			switch(n){
-				case 'd':
-				Timer2_Init(20);
-				cursor++;
+int n;
+while(1){
+	UART_OutString("\n\rInput:");
+	n = UART_InChar();
+	UART_OutChar(n);
+	UART_OutString("\n\r");
+	switch(n){
+		case 'd':
+			Timer2_Init(20);
+			cursor++;
 			while(matrix[cursor]!=' '){
-				cursor++;
-		if(cursor>9) cursor=1;
-		}	
-		drawGrid();
-		break;
-				case 'a':
-					cursor--;
-		while(matrix[cursor]!=' '){
+			cursor++;
+			if(cursor>9) cursor=1;
+			}	
+			drawGrid();
+			break;
+		case 'a':
+			Timer2_Init(20);
+			cursor--;
+			while(matrix[cursor]!=' '){
 			cursor--;
 			if(cursor<1) cursor=9;
-		}
-		drawGrid();
-		break;
-				case 's':
-					if(matrix[cursor]==' '){
-		if (turn =='X'){
-			matrix[cursor]='X';
-			
-			turn='O';
-		}
-		else{ 
-			matrix[cursor]='O';
-		  turn='X';
-		}
-		drawGrid();
-		moves++;
-	}
-break;					
 			}
-		}
+			drawGrid();
+			break;
+		case ' ':
+			Timer2_Init(20);
+			if(matrix[cursor]==' '){
+			if (turn =='X'){
+			matrix[cursor]='X';
+			turn='O';
+			}
+			else{ 
+			matrix[cursor]='O';
+			turn='X';
+			}
+			drawGrid();
+			moves++;
+			}
+			break;	
+		case 'w':
+			Timer2_Init(20);
+			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up
+			else	cursor -= 3;
+			drawGrid();	
+			break;
+		case 's':
+			Timer2_Init(20);
+			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code up
+			else	cursor += 3;
+			drawGrid();	
+			break;
+	}
+}
 }
 

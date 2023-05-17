@@ -27,6 +27,25 @@ void GPIOPortF_Handler(void){
 		drawGrid();		
 	}
 
+	void GPIOPortB_Handler(void){
+	if (GPIO_PORTB_RIS_R &(1<<0))  
+	{
+		Timer2_Init(20);
+		GPIO_PORTB_ICR_R|= (1<<0);
+		if(cursor < 4 && cursor > 0)	cursor += 6;   //code up
+		else	cursor -= 3;
+		drawGrid();	
+		}
+		
+	else if(GPIO_PORTB_RIS_R &(1<<1)){	
+		Timer2_Init(20);
+		GPIO_PORTB_ICR_R |= (1<<1);
+		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
+		else	cursor += 3;
+		drawGrid();		
+	}
+}
+
 void GPIOPortE_Handler(void){
 if (GPIO_PORTE_RIS_R &(1<<1))  
 	{
@@ -44,19 +63,12 @@ if (GPIO_PORTE_RIS_R &(1<<1))
 		drawGrid();
 		moves++;
 	}
-}
-else if(GPIO_PORTF_RIS_R &(1<<5)){	
-		Timer2_Init(20);
-		GPIO_PORTF_ICR_R |= (1<<5);
-		if(cursor==7) cursor=1;
-		else if(cursor==8) cursor=2;
-		else if(cursor==9) cursor=3;
-		else cursor+=3;
 	/*
-		if(cursor < 10 && cursor > 6)	cursor -= 6;
+		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
 		else	cursor += 3;
-	*/
-		}	
-		drawGrid();		
+		drawGrid();*/
+	
+		}			
 }
+
 
