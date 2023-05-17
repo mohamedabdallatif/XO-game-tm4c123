@@ -1,6 +1,7 @@
 #include "../headers/tm4c123gh6pm.h"
 #include "..\\./headers/UART.h"
 #include "..\\./headers/Run.h"
+#include "..\\./headers/Leds.h"
 #include "..\\./headers/Timer2.h"
 #include "..\\./headers/check_winner.h"
 #include "..\\./headers/Nokia5110.h"
@@ -84,11 +85,13 @@ while(1){
 			Timer2_Init(20);
 			if(matrix[cursor]==' '){
 			if (turn =='X'){
+			Set_Led(0);
 			matrix[cursor]='X';
 			won = check_winner (matrix, turn);
 				if (won == 1){
-					//led red blink for a while then
-					//Timer2_Init(100);
+					Flash(0);//red led on
+					Timer2_Init(100);
+					Clear_Led(0);//red led off
 					Nokia5110_ClearBuffer();
 					Nokia5110_DisplayBuffer();
 					Nokia5110_SetCursor(3, 2);
@@ -104,8 +107,26 @@ while(1){
 			turn='O';
 			}
 			else{ 
+			Set_Led(2);
 			matrix[cursor]='O';
-			check_winner(matrix, turn);
+			won = check_winner (matrix, turn);
+				if (won == 1){
+					Flash(2);//yellow led on
+					Timer2_Init(100);
+					Clear_Led(2);//red led off
+					Nokia5110_ClearBuffer();
+					Nokia5110_DisplayBuffer();
+					Nokia5110_SetCursor(3, 2);
+					Nokia5110_OutChar(turn);
+					Nokia5110_OutString("-Player");
+					Nokia5110_SetCursor(4, 3);
+					Nokia5110_OutString("wins");
+					Timer2_Init(100);
+					Nokia5110_DisplayBuffer();
+					Timer2_Init(100);
+					return;
+				}
+			Clear_Led(2);
 			turn='X';
 			}
 			drawGrid();

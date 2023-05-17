@@ -4,3 +4,4 @@
 .\xogame.o: headers/gpio_driver.h
 .\xogame.o: headers/Run.h
 .\xogame.o: headers/UART.h
+.\xogame.o: headers/Leds.h

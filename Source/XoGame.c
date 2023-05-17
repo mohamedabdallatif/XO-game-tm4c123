@@ -15,6 +15,7 @@
 #include "headers/gpio_driver.h"
 #include "headers/Run.h"
 #include "headers/UART.h"
+#include "headers/Leds.h"
 
 int main(void){
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz

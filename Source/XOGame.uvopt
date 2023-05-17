@@ -208,10 +208,24 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
+<<<<<<< HEAD
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>4</TopLine>
       <CurrentLine>24</CurrentLine>
+=======
+<<<<<<< HEAD
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>34</CurrentLine>
+=======
+      <ColumnNumber>19</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>8</TopLine>
+      <CurrentLine>22</CurrentLine>
+>>>>>>> b5edb6c9259821ee175fbd97b478194266aaf403
+>>>>>>> f683323139cc1adf3fd52a97f56fd8cb770c9595
       <bDave2>0</bDave2>
       <PathWithFileName>.\XoGame.c</PathWithFileName>
       <FilenameWithoutPath>XoGame.c</FilenameWithoutPath>
@@ -314,8 +328,18 @@
       <Focus>0</Focus>
       <ColumnNumber>43</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< HEAD
       <TopLine>52</TopLine>
       <CurrentLine>50</CurrentLine>
+=======
+<<<<<<< HEAD
+      <TopLine>78</TopLine>
+      <CurrentLine>1</CurrentLine>
+=======
+      <TopLine>103</TopLine>
+      <CurrentLine>70</CurrentLine>
+>>>>>>> b5edb6c9259821ee175fbd97b478194266aaf403
+>>>>>>> f683323139cc1adf3fd52a97f56fd8cb770c9595
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\UART.c</PathWithFileName>
       <FilenameWithoutPath>UART.c</FilenameWithoutPath>
@@ -520,10 +544,21 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
+<<<<<<< HEAD
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>49</TopLine>
+=======
+      <ColumnNumber>1</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+<<<<<<< HEAD
+      <TopLine>32</TopLine>
+      <CurrentLine>66</CurrentLine>
+=======
+      <TopLine>55</TopLine>
+>>>>>>> f683323139cc1adf3fd52a97f56fd8cb770c9595
       <CurrentLine>71</CurrentLine>
+>>>>>>> b5edb6c9259821ee175fbd97b478194266aaf403
       <bDave2>0</bDave2>
       <PathWithFileName>.\logic\Run.c</PathWithFileName>
       <FilenameWithoutPath>Run.c</FilenameWithoutPath>
