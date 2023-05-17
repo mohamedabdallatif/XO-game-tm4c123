@@ -111,7 +111,7 @@ while(1){
 						turn='O';
 					}
 				else{ 
-					Set_Led(2);
+						Set_Led(2);
 						matrix[cursor]='O';
 						won = check_winner (matrix, turn);
 						if (won == 1){
@@ -133,7 +133,7 @@ while(1){
 						Clear_Led(2);
 					turn='X';
 					}
-			  		drawGrid();
+			  	drawGrid();
 					moves++;
 					}
 					break;	
