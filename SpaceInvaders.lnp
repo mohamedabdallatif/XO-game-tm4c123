@@ -1,7 +1,7 @@
 --cpu Cortex-M4
 ".\startup.o"
 ".\random.o"
-".\spaceinvaders.o"
+".\xogame.o"
 ".\gpio_driver.o"
 ".\interrupt.o"
 ".\timer2.o"

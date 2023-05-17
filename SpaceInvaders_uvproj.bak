@@ -498,6 +498,11 @@
               <FileType>5</FileType>
               <FilePath>.\headers\TExaS.h</FilePath>
             </File>
+            <File>
+              <FileName>UART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\headers\UART.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
