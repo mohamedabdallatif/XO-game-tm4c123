@@ -1,3 +1,3 @@
 void drawGrid(void);
-void run_Xo(void);
-
+void Xo_Init(void);
+void choose(void);
