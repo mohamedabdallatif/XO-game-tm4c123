@@ -15,12 +15,12 @@ void Clear_Led(int Led_Pin){
 	GPIO_PORTE_DATA_R &= ~(1 << Led_Pin);
 }
 // using only when starting game or replay..
-void Start_Game(int Led_Pin){
+void Start_Game(){
+	Set_Led(0);
+	Timer2_Init(15);
 	Set_Led(2);
 	Timer2_Init(15);
 	Set_Led(3);
-	Timer2_Init(15);
-	Set_Led(4);
 	Timer2_Init(15);
 }
 
@@ -39,11 +39,11 @@ if (someone plays in filled place)		----> Flash Led 3
 */
 void Flash(int Led_Pin){
 	int l;
-	for (l = 0; l < 3; l++){
+	for (l = 0; l < 6; l++){
 		Set_Led(Led_Pin);
-		Timer2_Init(25);
+		Timer2_Init(8);
 		Clear_Led(Led_Pin);
-		Timer2_Init(25);
+		Timer2_Init(8);
 	}
 }
 

@@ -6,7 +6,7 @@ void PortE_Init(void){
 	SYSCTL_RCGC2_R  |= (1<<4);        //port E clock
   delay = 0;                        // delay   
   GPIO_PORTE_LOCK_R = 0x4C4F434B;   // 2) unlock PortE
-  GPIO_PORTE_CR_R = (1<<0)|(1<<1)|(1<<2)|(1<<3);           // allow changes to PE0,PE1    
+  GPIO_PORTE_CR_R = (1<<0)|(1<<1)|(1<<2)|(1<<3);           // allow changes to PE0 to PE3    
   GPIO_PORTE_AMSEL_R = 0x00;        //  disable analog function
   GPIO_PORTE_PCTL_R = 0x00000000;   // GPIO clear bit PCTL  
   GPIO_PORTE_DIR_R = 0x0D;          //  PE0 OUTPUT PE1 INPUT 
