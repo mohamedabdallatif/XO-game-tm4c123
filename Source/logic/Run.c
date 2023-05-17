@@ -92,9 +92,12 @@ void result(){
 }*/
 
 void Xo_Init(void){
+	Nokia5110_ClearBuffer();
+	Nokia5110_DisplayBuffer();
 	Nokia5110_SetCursor(4,1);
 	Nokia5110_OutString("1.Kit");
 	Nokia5110_SetCursor(4,2);
 	Nokia5110_OutString("2.UART");
+	//Nokia5110_DisplayBuffer();
 }
 

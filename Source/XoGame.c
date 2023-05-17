@@ -17,17 +17,12 @@
 #include "headers/UART.h"
 #include "headers/Leds.h"
 
-int main(void){
+int main(void) {
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
 	PortF_Init();
   PortE_Init();
 	Nokia5110_Init();
 	Xo_Init();
-	//drawGrid();
-	//UART();
-	Xo_Init();
-	//result();
-	
 	while(1){
 	}
 

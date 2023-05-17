@@ -15,8 +15,6 @@ int flag =0;
 
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
-	   PortE_Init();
-	   PortB_Init();
      drawGrid();
 		flag =1;
 	}
@@ -53,7 +51,7 @@ void GPIOPortB_Handler(void){
 		drawGrid();	
 		}
 	
-	else if(GPIO_PORTB_RIS_R &(1<<1) && flag !=0){	
+	else if(GPIO_PORTB_RIS_R&(1<<1) && flag !=0){	
 		Timer2_Init(20);
 		GPIO_PORTB_ICR_R |= (1<<1);
 		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down

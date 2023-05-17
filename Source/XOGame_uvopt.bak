@@ -71,7 +71,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -115,16 +115,6 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGDARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(9108=-1,-1,-1,-1,0)(9106=278,123,487,280,1)(9104=-1,-1,-1,-1,0)(9107=-1,-1,-1,-1,0)(9102=557,184,953,458,1)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name>-T0</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>UL2CM3</Key>
           <Name>UL2CM3(-O207 -S0 -C0 -FO7 -FD20000000 -FC800 -FN1 -FF0TM4C123_32 -FS00 -FL08000)</Name>
         </SetRegEntry>
@@ -136,12 +126,12 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
-        <aSer1>1</aSer1>
+        <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>1</viewmode>
+        <viewmode>0</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -166,7 +156,7 @@
 
   <Group>
     <GroupName>Source</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -178,7 +168,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>267</TopLine>
+      <TopLine>268</TopLine>
       <CurrentLine>277</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup.s</PathWithFileName>
@@ -208,20 +198,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< HEAD
-      <TopLine>1</TopLine>
+      <TopLine>11</TopLine>
       <CurrentLine>26</CurrentLine>
-=======
-<<<<<<< HEAD
-      <TopLine>1</TopLine>
-      <CurrentLine>28</CurrentLine>
-=======
-      <TopLine>8</TopLine>
-      <CurrentLine>24</CurrentLine>
->>>>>>> 8e7d87b3b2b2217a6c4450ac28e26062e09372e5
->>>>>>> 569ce1b81ddbfa6982936a42e4cebe5926b97591
       <bDave2>0</bDave2>
       <PathWithFileName>.\XoGame.c</PathWithFileName>
       <FilenameWithoutPath>XoGame.c</FilenameWithoutPath>
@@ -232,7 +212,7 @@
 
   <Group>
     <GroupName>drivers</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -240,21 +220,12 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>4</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-<<<<<<< HEAD
-      <TopLine>25</TopLine>
-=======
-<<<<<<< HEAD
-      <TopLine>28</TopLine>
-      <CurrentLine>57</CurrentLine>
-=======
-      <TopLine>24</TopLine>
->>>>>>> 569ce1b81ddbfa6982936a42e4cebe5926b97591
+      <TopLine>26</TopLine>
       <CurrentLine>39</CurrentLine>
->>>>>>> 8e7d87b3b2b2217a6c4450ac28e26062e09372e5
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\gpio_driver.c</PathWithFileName>
       <FilenameWithoutPath>gpio_driver.c</FilenameWithoutPath>
@@ -265,26 +236,12 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>5</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< HEAD
-      <ColumnNumber>15</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>54</TopLine>
-      <CurrentLine>34</CurrentLine>
-=======
-<<<<<<< HEAD
-      <ColumnNumber>4</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>53</TopLine>
-      <CurrentLine>81</CurrentLine>
-=======
-      <ColumnNumber>39</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>7</TopLine>
-      <CurrentLine>66</CurrentLine>
->>>>>>> 8e7d87b3b2b2217a6c4450ac28e26062e09372e5
->>>>>>> 569ce1b81ddbfa6982936a42e4cebe5926b97591
+      <TopLine>34</TopLine>
+      <CurrentLine>35</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\interrupt.c</PathWithFileName>
       <FilenameWithoutPath>interrupt.c</FilenameWithoutPath>
@@ -295,7 +252,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>6</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -311,11 +268,11 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>7</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>301</TopLine>
+      <TopLine>302</TopLine>
       <CurrentLine>305</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\Nokia5110.c</PathWithFileName>
@@ -327,7 +284,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>8</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -343,23 +300,12 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>9</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< HEAD
-      <ColumnNumber>14</ColumnNumber>
-=======
-<<<<<<< HEAD
-      <ColumnNumber>4</ColumnNumber>
+      <ColumnNumber>15</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>54</TopLine>
-      <CurrentLine>55</CurrentLine>
-=======
-      <ColumnNumber>13</ColumnNumber>
->>>>>>> 569ce1b81ddbfa6982936a42e4cebe5926b97591
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>57</TopLine>
+      <TopLine>58</TopLine>
       <CurrentLine>71</CurrentLine>
->>>>>>> 8e7d87b3b2b2217a6c4450ac28e26062e09372e5
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\UART.c</PathWithFileName>
       <FilenameWithoutPath>UART.c</FilenameWithoutPath>
@@ -370,7 +316,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>10</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -386,7 +332,7 @@
 
   <Group>
     <GroupName>headers</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -538,7 +484,7 @@
 
   <Group>
     <GroupName>logic</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -550,8 +496,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\logic\check_winner.c</PathWithFileName>
       <FilenameWithoutPath>check_winner.c</FilenameWithoutPath>
@@ -562,23 +508,12 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>21</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-<<<<<<< HEAD
-      <ColumnNumber>14</ColumnNumber>
-=======
-<<<<<<< HEAD
-      <ColumnNumber>7</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>60</TopLine>
-      <CurrentLine>97</CurrentLine>
-=======
-      <ColumnNumber>12</ColumnNumber>
->>>>>>> 569ce1b81ddbfa6982936a42e4cebe5926b97591
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>57</TopLine>
-      <CurrentLine>71</CurrentLine>
->>>>>>> 8e7d87b3b2b2217a6c4450ac28e26062e09372e5
+      <TopLine>72</TopLine>
+      <CurrentLine>93</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\logic\Run.c</PathWithFileName>
       <FilenameWithoutPath>Run.c</FilenameWithoutPath>
