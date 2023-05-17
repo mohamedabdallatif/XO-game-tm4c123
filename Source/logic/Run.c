@@ -89,7 +89,7 @@ void result(){
 	    UART();
       
 	 }
-}
+}*/
 
 void Xo_Init(void){
 	Nokia5110_SetCursor(4,1);
@@ -97,4 +97,4 @@ void Xo_Init(void){
 	Nokia5110_SetCursor(4,2);
 	Nokia5110_OutString("2.UART");
 }
-*/
+

@@ -133,7 +133,7 @@ while(1){
 						Clear_Led(2);
 					turn='X';
 					}
-					drawGrid();
+			  		drawGrid();
 					moves++;
 					}
 					break;	
