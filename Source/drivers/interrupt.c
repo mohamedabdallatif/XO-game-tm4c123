@@ -2,11 +2,13 @@
 #include "../headers/check_winner.h"
 #include "../headers/tm4c123gh6pm.h"
 #include "../headers/Timer2.h"
+#include "../headers/Nokia5110.h"
 
 extern char matrix[10];
 extern char turn;
 extern int cursor;
 extern int moves;
+char win ;
 
 void GPIOPortF_Handler(void){
 	if (GPIO_PORTF_RIS_R &(1<<4))  
@@ -27,7 +29,7 @@ void GPIOPortF_Handler(void){
 		drawGrid();		
 	}
 
-	void GPIOPortB_Handler(void){
+void GPIOPortB_Handler(void){
 	if (GPIO_PORTB_RIS_R &(1<<0))  
 	{
 		Timer2_Init(20);
@@ -36,7 +38,7 @@ void GPIOPortF_Handler(void){
 		else	cursor -= 3;
 		drawGrid();	
 		}
-		
+	
 	else if(GPIO_PORTB_RIS_R &(1<<1)){	
 		Timer2_Init(20);
 		GPIO_PORTB_ICR_R |= (1<<1);
@@ -52,23 +54,26 @@ if (GPIO_PORTE_RIS_R &(1<<1))
 		Timer2_Init(20);
 		GPIO_PORTE_ICR_R|= (1<<1);
 		if(matrix[cursor]==' '){
-		if (turn =='X'){
-			matrix[cursor]='X';
-			turn='O';
-		}
-		else{ 
+			if (turn =='X'){
+				matrix[cursor]='X';
+				win = check_winner (matrix, turn);
+				if (win == 1){
+					//led red blink for a while then
+					Timer2_Init(25);
+					Nokia5110_Clear();
+					Nokia5110_SetCursor(2,2);
+					Nokia5110_OutString("X Win!");
+				}
+				turn='O';
+			}
+			else{ 
 			matrix[cursor]='O';
+			check_winner (matrix, turn);
 		  turn='X';
+			}
+			drawGrid();
+			moves++;
 		}
-		drawGrid();
-		moves++;
-	}
-	/*
-		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
-		else	cursor += 3;
-		drawGrid();*/
-	
-		}			
+	}			
 }
-
 

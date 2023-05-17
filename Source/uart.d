@@ -4,3 +4,4 @@
 .\uart.o: drivers\..\\./headers/Run.h
 .\uart.o: drivers\..\\./headers/Timer2.h
 .\uart.o: drivers\..\\./headers/check_winner.h
+.\uart.o: drivers\..\\./headers/Nokia5110.h

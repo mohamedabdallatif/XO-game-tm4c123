@@ -3,3 +3,4 @@
 .\interrupt.o: drivers\../headers/check_winner.h
 .\interrupt.o: drivers\../headers/tm4c123gh6pm.h
 .\interrupt.o: drivers\../headers/Timer2.h
+.\interrupt.o: drivers\../headers/Nokia5110.h

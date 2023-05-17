@@ -3,12 +3,13 @@
 #include "..\\./headers/Run.h"
 #include "..\\./headers/Timer2.h"
 #include "..\\./headers/check_winner.h"
+#include "..\\./headers/Nokia5110.h"
 
 extern char matrix[10];
 extern char turn;
 extern int cursor;
 extern int moves;
-
+char won;
 //------------UART_Init------------
 // Initialize the UART for 115200 baud rate (assuming 80 MHz UART clock),
 // 8 bit word length, no parity bits, one stop bit, FIFOs enabled
@@ -70,19 +71,13 @@ while(1){
 		case 'd':
 			Timer2_Init(20);
 			cursor++;
-			while(matrix[cursor]!=' '){
-			cursor++;
-			if(cursor>9) cursor=1;
-			}	
+			if(cursor>9) cursor=1;	
 			drawGrid();
 			break;
 		case 'a':
 			Timer2_Init(20);
 			cursor--;
-			while(matrix[cursor]!=' '){
-			cursor--;
 			if(cursor<1) cursor=9;
-			}
 			drawGrid();
 			break;
 		case ' ':
@@ -90,10 +85,27 @@ while(1){
 			if(matrix[cursor]==' '){
 			if (turn =='X'){
 			matrix[cursor]='X';
+			won = check_winner (matrix, turn);
+				if (won == 1){
+					//led red blink for a while then
+					//Timer2_Init(100);
+					Nokia5110_ClearBuffer();
+					Nokia5110_DisplayBuffer();
+					Nokia5110_SetCursor(3, 2);
+					Nokia5110_OutChar(turn);
+					Nokia5110_OutString("-Player");
+					Nokia5110_SetCursor(4, 3);
+					Nokia5110_OutString("wins");
+					Timer2_Init(100);
+					Nokia5110_DisplayBuffer();
+					Timer2_Init(100);
+					return;
+				}
 			turn='O';
 			}
 			else{ 
 			matrix[cursor]='O';
+			check_winner(matrix, turn);
 			turn='X';
 			}
 			drawGrid();

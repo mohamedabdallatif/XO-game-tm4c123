@@ -1,5 +1,6 @@
 extern int scoreX, scoreO;
-void check_winner (char grid[], char turn){
+
+char check_winner (char grid[], char turn){
 	char player = turn;
 	int i;
 	// check winning within row 1 or 2 or 3
@@ -9,7 +10,8 @@ void check_winner (char grid[], char turn){
 		{
 			if(player=='X') scoreX++;
 			else scoreO++;
-			return;
+			
+			return 1;
 		}
 	}
 	
@@ -20,6 +22,7 @@ void check_winner (char grid[], char turn){
 		{
 			if(player=='X') scoreX++;
 			else scoreO++;
+			return 1;
 		}
 	}
 	
@@ -28,6 +31,7 @@ void check_winner (char grid[], char turn){
 	{
 		if(player=='X') scoreX++;
 		else scoreO++;
+		return 1;
 	}
 	
 	// check winning within seconadry diagonal
@@ -35,8 +39,8 @@ void check_winner (char grid[], char turn){
 	{
 		if(player=='X') scoreX++;
 		else scoreO++;
+		return 1;
 	}
 	
-	// There is now winners
-	
+	return 0; //no one won!
 }
