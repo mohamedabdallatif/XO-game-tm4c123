@@ -21,7 +21,6 @@ int main(void){
 	PortF_Init();
 	Nokia5110_Init();
 	Xo_Init();
-	choose();
 	while(1){
 	}
 

@@ -4,3 +4,5 @@
 .\interrupt.o: drivers\../headers/tm4c123gh6pm.h
 .\interrupt.o: drivers\../headers/Timer2.h
 .\interrupt.o: drivers\../headers/Nokia5110.h
+.\interrupt.o: drivers\../headers/gpio_driver.h
+.\interrupt.o: drivers\../headers/UART.h
