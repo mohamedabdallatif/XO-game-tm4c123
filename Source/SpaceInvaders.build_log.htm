@@ -8,9 +8,15 @@ Project File Date:  05/19/2023
 
 <h2>Output:</h2>
 Build target 'SpaceInvaders'
+<<<<<<< HEAD
 compiling XoGame.c...
 linking...
 Program Size: Code=7226 RO-data=874 RW-data=128 ZI-data=1680  
+=======
+compiling UART.c...
+linking...
+Program Size: Code=7022 RO-data=1422 RW-data=128 ZI-data=1680  
+>>>>>>> 4e71410a7600e1138f3598580b17aab2c20b4b73
 ".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\Users\\Muhammed-PC\\Desktop\\XO-game-tm4c123\\Source\\SpaceInvaders.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
@@ -20,6 +26,7 @@ Verify OK.
 </pre>
 </body>
 </html>
+<<<<<<< HEAD
  RO-data=874 RW-data=128 ZI-data=1680  
 ".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\Users\\Muhammed-PC\\Desktop\\XO-game-tm4c123\\Source\\SpaceInvaders.axf" 
@@ -27,3 +34,65 @@ Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
 Programming Done.
 Verify OK.
+=======
+}"
+  char n;
+drivers\UART.c(67): error:  #169: expected a declaration
+  while(1){
+drivers\UART.c(88): warning:  #12-D: parsing restarts here after previous syntax error
+                        Timer2_Init(10);
+drivers\UART.c(89): error:  #169: expected a declaration
+                        if(matrix[cursor]==' '){
+drivers\UART.c(110): warning:  #12-D: parsing restarts here after previous syntax error
+                                                        Print_Result(turn);
+drivers\UART.c(111): error:  #169: expected a declaration
+                                                        return;
+drivers\UART.c(112): error:  #169: expected a declaration
+                                                }
+drivers\UART.c(114): error:  #77-D: this declaration has no storage class or type specifier
+                                                turn='X';
+drivers\UART.c(114): error:  #147: declaration is incompatible with "char turn" (declared at line 10)
+                                                turn='X';
+drivers\UART.c(115): error:  #169: expected a declaration
+                                        }
+drivers\UART.c(117): error:  #169: expected a declaration
+                                if (!won && moves== 9){
+drivers\UART.c(124): warning:  #12-D: parsing restarts here after previous syntax error
+                                drawGrid();
+drivers\UART.c(125): error:  #169: expected a declaration
+                                }
+drivers\UART.c(127): error:  #169: expected a declaration
+                case 'w':
+drivers\UART.c(129): error:  #169: expected a declaration
+                        if(cursor < 4 && cursor > 0)    cursor += 6;   //code up
+drivers\UART.c(130): error:  #169: expected a declaration
+                        else    cursor -= 3;
+drivers\UART.c(131): warning:  #1295-D: Deprecated declaration drawGrid - give arg types
+                        drawGrid();     
+drivers\UART.c(131): warning:  #77-D: this declaration has no storage class or type specifier
+                        drawGrid();     
+drivers\UART.c(131): error:  #147: declaration is incompatible with "void drawGrid(void)" (declared at line 1 of "drivers\..\\./headers/Run.h")
+                        drawGrid();     
+drivers\UART.c(132): error:  #169: expected a declaration
+                        break;
+drivers\UART.c(133): error:  #169: expected a declaration
+                case 's':
+drivers\UART.c(135): error:  #169: expected a declaration
+                        if(cursor < 10 && cursor > 6)   cursor -= 6;   //code up
+drivers\UART.c(136): error:  #169: expected a declaration
+                        else    cursor += 3;
+drivers\UART.c(137): warning:  #1295-D: Deprecated declaration drawGrid - give arg types
+                        drawGrid();     
+drivers\UART.c(137): warning:  #77-D: this declaration has no storage class or type specifier
+                        drawGrid();     
+drivers\UART.c(138): error:  #169: expected a declaration
+                        break;
+drivers\UART.c(139): error:  #169: expected a declaration
+        }
+drivers\UART.c(142): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
+drivers\UART.c: 8 warnings, 21 errors
+".\SpaceInvaders.axf" - 21 Error(s), 8 Warning(s).
+Target not created
+.
+Target not created
+>>>>>>> 4e71410a7600e1138f3598580b17aab2c20b4b73

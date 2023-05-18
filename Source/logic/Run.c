@@ -102,12 +102,23 @@ void Play_Again(void)
 {
 		Nokia5110_Clear();
 		Xo_Init();
+<<<<<<< HEAD
 		i = 0, j = 0, position = 1, current_cursor = 1;
 		moves = 0;
 		cursor=1;
 		for (i = 0; i < 9; i++) matrix[i] = ' '; // erase all drawings in cells matrix
 		turn = 'X';
 		flag = 0;
+=======
+  i = 0, j = 0, position = 1, current_cursor = 1;
+	start=0;
+	moves = 0;
+	cursor=1;
+	for (i = 0; i < 9; i++)
+		matrix[i] = ' '; // erase all drawings in cells matrix
+	turn = 'X';
+	flag = 0;
+>>>>>>> 4e71410a7600e1138f3598580b17aab2c20b4b73
 }
 void Print_Result(char turn){
 		extern int flag ;

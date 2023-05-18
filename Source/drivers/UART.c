@@ -62,7 +62,8 @@ void UART_OutChar(unsigned char data){ //print
 } 
 
 void UART(void){
-char n;
+	char n;
+	UART_OutString("Instructions:\nd-->left\na-->right\nw-->top\ns-->down\nspace-->Your Turn");
 while(1){
 	if (turn =='X') Set_Led(0);
 	else Set_Led(2);
@@ -93,16 +94,7 @@ while(1){
 							Flash(0);//red led on
 							Timer2_Init(100);
 							Clear_Led(0);//red led off
-							Nokia5110_ClearBuffer();
-							Nokia5110_DisplayBuffer();
-							Nokia5110_SetCursor(3, 2);
-							Nokia5110_OutChar(turn);
-							Nokia5110_OutString("-Player");
-							Nokia5110_SetCursor(4, 3);
-							Nokia5110_OutString("wins");
-							Timer2_Init(100);
-							Nokia5110_DisplayBuffer();
-							Timer2_Init(100);
+							Print_Result(turn);
 							return;
 						}
 						Clear_Led(0);
@@ -115,15 +107,7 @@ while(1){
 							Flash(2);//red led on
 							Timer2_Init(50);
 							Clear_Led(2);//red led off
-							Nokia5110_ClearBuffer();
-							Nokia5110_DisplayBuffer();
-							Nokia5110_SetCursor(3, 2);
-							Nokia5110_OutChar(turn);
-							Nokia5110_OutString("-Player");
-							Nokia5110_SetCursor(4, 3);
-							Nokia5110_OutString("wins");
-							Nokia5110_DisplayBuffer();
-							Timer2_Init(100);
+							Print_Result(turn);
 							return;
 						}
 						Clear_Led(2);
@@ -134,24 +118,8 @@ while(1){
 				Flash(3);//red led on
 				Timer2_Init(50);
 				Clear_Led(3);//red led off
-				Nokia5110_ClearBuffer();
-				Nokia5110_DisplayBuffer();
-				Nokia5110_SetCursor(1, 1);
-				Nokia5110_OutString("NO");
-				Timer2_Init(40);
-				Nokia5110_DisplayBuffer();
-				Timer2_Init(40);
-				Nokia5110_SetCursor(3, 2);
-				Nokia5110_OutString("ONE");
-				Timer2_Init(40);
-				Nokia5110_DisplayBuffer();
-				Timer2_Init(40);
-				Nokia5110_SetCursor(6, 3);
-				Nokia5110_OutString("WIN!");
-				Timer2_Init(100);
-				Nokia5110_DisplayBuffer();
-				Timer2_Init(100);
-				return;
+				Print_Result('D');
+					return;
 				}
 				drawGrid();
 				}
