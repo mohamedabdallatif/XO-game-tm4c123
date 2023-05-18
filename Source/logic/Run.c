@@ -11,7 +11,8 @@ int i = 0, j = 0, position = 1, current_cursor = 1, start;
 char matrix[10]={'a',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char turn = 'X', x = 'X', o = 'O';
 int scoreX = 0, scoreO = 0, cursor = 1;
-
+	extern int flag ;
+	extern int moves;
 void drawGrid(void){
 	if(start==0){
 		Start_Game();
@@ -80,16 +81,6 @@ void result(){
 		Nokia5110_DisplayBuffer();
 		Timer2_Init(100);
 }
-/*void choose(void){
-   if(GPIO_PORTF_DATA_R & 1){
-	   PortE_Init();
-		 PortB_Init();
-	 }
-	 else if (GPIO_PORTF_DATA_R & (1<<4)){
-	    UART();
-      
-	 }
-}*/
 
 void Xo_Init(void){
 	Nokia5110_ClearBuffer();
@@ -105,37 +96,40 @@ void Bye(void)
 	  Nokia5110_Clear();
 		Nokia5110_SetCursor(2,2);
 		Nokia5110_OutString("Bye Bye!");
+	while(1){
+	}
 }
 void Play_Again(void)
 {
+		Nokia5110_Clear();
+		Xo_Init();
   i = 0, j = 0, position = 1, current_cursor = 1;
-	extern int moves;
 	moves = 0;
+	cursor=1;
+	for (i = 0; i < 9; i++)
+		matrix[i] = ' '; // erase all drawings in cells matrix
 	turn = 'X', x = 'X', o = 'O';
-	extern int flag ;
 	flag = 0;
-	Xo_Init();
 }
 void Print_Result(char turn){
 	
 	extern int flag ;
 	flag = 3;
 	Nokia5110_Clear();
-	Nokia5110_SetCursor(25,25);
+	Nokia5110_SetCursor(0,0);
 	if(turn == 'D')
 	{
 			Nokia5110_OutString("Draw!");
 	}
 	else if(turn == 'X')
 	{
-			Nokia5110_OutString("Player X Won!");
+			Nokia5110_OutString("Player X Won");
 	}
 	else if(turn == 'O')
 	{
-			Nokia5110_OutString("Player O Won!");
+			Nokia5110_OutString("Player O Won");
 	}
-	
-			Nokia5110_SetCursor(2,10);
+	    Nokia5110_SetCursor(2,10);
 			Nokia5110_OutString("Score X!");
 	    Nokia5110_OutUDec(scoreX);
 
@@ -144,7 +138,7 @@ void Print_Result(char turn){
 	    Nokia5110_OutUDec(scoreO);
 		
 			Timer2_Init(150);
-			Nokia5110_Clear();
+		/*	Nokia5110_Clear();
 	
 			Nokia5110_SetCursor(2,2);
 			Nokia5110_OutString("Play Again?");
@@ -155,9 +149,7 @@ void Print_Result(char turn){
 
 			Nokia5110_SetCursor(50,10);
 			Nokia5110_OutString("NO!");
-			
-	
-	    
+	*/
 	}
 
 

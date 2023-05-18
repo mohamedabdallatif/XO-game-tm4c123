@@ -22,7 +22,7 @@ int main(void) {
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
 	PortF_Init();
   UART_Init();              // initialize UART
-//	ADC_Init();
+	ADC_Init();
 	Nokia5110_Init();
 	Xo_Init();
 	while(1){

@@ -36,20 +36,70 @@ void GPIOPortF_Handler(void){
 			UART();
 	} 
 	else if (GPIO_PORTF_RIS_R &(1<<4) && flag==1)  {
-			Timer2_Init(20);
+			/*Timer2_Init(20);
 			GPIO_PORTF_ICR_R|= (1<<4);
 			cursor--;
 			if(cursor<1) cursor=9;
 			drawGrid();
+		*/
+		if (turn =='X') Set_Led(0);
+		else Set_Led(2);
+		Timer2_Init(20);
+		GPIO_PORTF_ICR_R|= (1<<4);
+		Timer2_Init(10);
+			if(matrix[cursor]==' '){
+					if (turn =='X'){
+						matrix[cursor]='X';
+						win = check_winner (matrix, turn);
+						if (win == 1){
+							Flash(0);//red led on
+							Timer2_Init(100);
+							Clear_Led(0);//red led off
+							Print_Result(turn);
+							return;
+						}
+						Clear_Led(0);
+						turn='O';
+						if (turn =='X') Set_Led(0);
+						else Set_Led(2);
+					}
+				else{ 
+					matrix[cursor]='O';
+					win = check_winner (matrix, turn);
+					if (win == 1){
+						Flash(2);//red led on
+						Timer2_Init(100);
+						Clear_Led(2);//red led off
+						Print_Result(turn);
+						return;
+					}						
+					Clear_Led(2);
+					turn='X';
+					if (turn =='X') Set_Led(0);
+					else Set_Led(2);
+				}
+			moves++;
+			if (!win && moves == 9){
+					Clear_Led(0);
+					Clear_Led(2);
+					Flash(3);//red led on
+					Timer2_Init(50);
+					Clear_Led(3);//red led off
+					Print_Result('D');
+					Timer2_Init(100);
+					return;
+			}
+			drawGrid();
+		}
 	}
 
-	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){	
+	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){
+      GPIO_PORTF_ICR_R |= (1<<0);		
 			Timer2_Init(20);
-			GPIO_PORTF_ICR_R |= (1<<0);
 			cursor++;
 			if(cursor>9) cursor=1;
+			drawGrid();
 			}	
-			drawGrid();	
 			
 	}
 
@@ -84,88 +134,7 @@ void GPIOPortB_Handler(void){
 void GPIOPortE_Handler(void){
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
-		if (turn =='X') Set_Led(0);
-		else Set_Led(2);
-		Timer2_Init(20);
-		GPIO_PORTE_ICR_R|= (1<<1);
-		Timer2_Init(10);
-			if(matrix[cursor]==' '){
-					if (turn =='X'){
-						matrix[cursor]='X';
-						win = check_winner (matrix, turn);
-						if (win == 1){
-							Flash(0);//red led on
-							Timer2_Init(100);
-							Clear_Led(0);//red led off
-							Nokia5110_ClearBuffer();
-							Nokia5110_DisplayBuffer();
-							Nokia5110_SetCursor(3, 2);
-							Nokia5110_OutChar(turn);
-							Nokia5110_OutString("-Player");
-							Nokia5110_SetCursor(4, 3);
-							Nokia5110_OutString("wins");
-							Timer2_Init(100);
-							Nokia5110_DisplayBuffer();
-							Timer2_Init(100);
-							return;
-						}
-						Clear_Led(0);
-						turn='O';
-						if (turn =='X') Set_Led(0);
-						else Set_Led(2);
-					}
-				else{ 
-					matrix[cursor]='O';
-					win = check_winner (matrix, turn);
-					if (win == 1){
-						Flash(2);//red led on
-						Timer2_Init(100);
-						Clear_Led(2);//red led off
-						Nokia5110_ClearBuffer();
-						Nokia5110_DisplayBuffer();
-						Nokia5110_SetCursor(3, 2);
-						Nokia5110_OutChar(turn);
-						Nokia5110_OutString("-Player");
-						Nokia5110_SetCursor(4, 3);
-						Nokia5110_OutString("wins");
-						Timer2_Init(100);
-						Nokia5110_DisplayBuffer();
-						Timer2_Init(100);
-						return;
-					}						
-					Clear_Led(2);
-					turn='X';
-					if (turn =='X') Set_Led(0);
-					else Set_Led(2);
-				}
-			moves++;
-			if (!win && moves == 9){
-					Clear_Led(0);
-					Clear_Led(2);
-					Flash(3);//red led on
-					Timer2_Init(50);
-					Clear_Led(3);//red led off
-					Nokia5110_ClearBuffer();
-					Nokia5110_DisplayBuffer();
-					Nokia5110_SetCursor(1, 1);
-					Nokia5110_OutString("NO");
-					Timer2_Init(40);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(40);
-					Nokia5110_SetCursor(3, 2);
-					Nokia5110_OutString("ONE");
-					Timer2_Init(40);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(40);
-					Nokia5110_SetCursor(6, 3);
-					Nokia5110_OutString("WIN!");
-					Timer2_Init(100);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(100);
-					return;
-			}
-			drawGrid();
-		}
+		
 	}			
 }
 
@@ -176,15 +145,12 @@ void ADC0Seq3_Handler (void)
 
 		if((ADC0_RIS_R & (1<<3)) == (1<<3))
 		{
-				Nokia5110_ClearBuffer();
 			//Acknowlege interrupt
 			ADC0_RIS_R |= (1<<3); // CLEAR I BIT
 			Timer2_Init(20);
 			adcData = ADC0_SSFIFO3_R;
 			cursor = (adcData%9);
-			drawGrid();
-			Nokia5110_DisplayBuffer();
-			
+			drawGrid();			
 		}
 	
 }
