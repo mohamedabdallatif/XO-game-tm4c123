@@ -16,10 +16,12 @@ int flag =0;
 
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R &(1<<4) && flag ==3){
-		
+		// user chooses yes to play again
+		Play_Again();
 	}
 	if(GPIO_PORTF_RIS_R & (1<<0) && flag ==3){
-	  
+	  	// user choose not to play again
+		Bye();
 	}
 	if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
 			 PortE_Init();
@@ -40,15 +42,17 @@ void GPIOPortF_Handler(void){
 			if(cursor<1) cursor=9;
 			drawGrid();
 	}
-		
+
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){	
 			Timer2_Init(20);
 			GPIO_PORTF_ICR_R |= (1<<0);
 			cursor++;
 			if(cursor>9) cursor=1;
 			}	
-			drawGrid();		
+			drawGrid();	
+			
 	}
+
 
 void GPIOPortB_Handler(void){
 		if (GPIO_PORTB_RIS_R &(1<<0) && flag==1)  
