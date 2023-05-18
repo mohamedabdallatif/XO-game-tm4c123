@@ -130,7 +130,7 @@ void GPIOPortE_Handler(void){
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
 		Timer2_Init(20);
-			GPIO_PORTF_ICR_R|= (1<<4);
+			GPIO_PORTE_ICR_R|= (1<<1);
 			cursor--;
 			if(cursor<1) cursor=9;
 			drawGrid();
