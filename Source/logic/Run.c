@@ -100,4 +100,65 @@ void Xo_Init(void){
 	Nokia5110_OutString("2.UART");
 	//Nokia5110_DisplayBuffer();
 }
+void Bye(void)
+{		
+	  Nokia5110_Clear();
+		Nokia5110_SetCursor(2,2);
+		Nokia5110_OutString("Bye Bye!");
+}
+void Play_Again(void)
+{
+  i = 0, j = 0, position = 1, current_cursor = 1;
+	extern int moves;
+	moves = 0;
+	turn = 'X', x = 'X', o = 'O';
+	extern int flag ;
+	flag = 0;
+	Xo_Init();
+}
+void Print_Result(char turn){
+	
+	extern int flag ;
+	flag = 3;
+	Nokia5110_Clear();
+	Nokia5110_SetCursor(25,25);
+	if(turn == 'D')
+	{
+			Nokia5110_OutString("Draw!");
+	}
+	else if(turn == 'X')
+	{
+			Nokia5110_OutString("Player X Won!");
+	}
+	else if(turn == 'O')
+	{
+			Nokia5110_OutString("Player O Won!");
+	}
+	
+			Nokia5110_SetCursor(2,10);
+			Nokia5110_OutString("Score X!");
+	    Nokia5110_OutUDec(scoreX);
+
+			Nokia5110_SetCursor(50,10);
+			Nokia5110_OutString("Score Y!");
+	    Nokia5110_OutUDec(scoreO);
+		
+			Timer2_Init(150);
+			Nokia5110_Clear();
+	
+			Nokia5110_SetCursor(2,2);
+			Nokia5110_OutString("Play Again?");
+	    
+			Nokia5110_SetCursor(50,2);
+			Nokia5110_OutString("YES!");
+	  
+
+			Nokia5110_SetCursor(50,10);
+			Nokia5110_OutString("NO!");
+			
+	
+	    
+	}
+
+
 
