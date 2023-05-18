@@ -102,6 +102,7 @@ void Play_Again(void)
 		Nokia5110_Clear();
 		Xo_Init();
   i = 0, j = 0, position = 1, current_cursor = 1;
+	start=0;
 	moves = 0;
 	cursor=1;
 	for (i = 0; i < 9; i++)
