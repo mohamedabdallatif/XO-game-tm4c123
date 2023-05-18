@@ -62,12 +62,10 @@ void UART_OutChar(unsigned char data){ //print
 } 
 
 void UART(void){
-int n;
+char n;
 while(1){
-	
 	if (turn =='X') Set_Led(0);
 	else Set_Led(2);
-	
 	UART_OutString("\n\rInput:");
 	n = UART_InChar();
 	UART_OutChar(n);
@@ -111,12 +109,11 @@ while(1){
 						turn='O';
 					}
 				else{ 
-						Set_Led(2);
 						matrix[cursor]='O';
 						won = check_winner (matrix, turn);
 						if (won == 1){
 							Flash(2);//red led on
-							Timer2_Init(100);
+							Timer2_Init(50);
 							Clear_Led(2);//red led off
 							Nokia5110_ClearBuffer();
 							Nokia5110_DisplayBuffer();
@@ -125,37 +122,39 @@ while(1){
 							Nokia5110_OutString("-Player");
 							Nokia5110_SetCursor(4, 3);
 							Nokia5110_OutString("wins");
-							Timer2_Init(100);
 							Nokia5110_DisplayBuffer();
 							Timer2_Init(100);
 							return;
 						}
 						Clear_Led(2);
-					turn='X';
+						turn='X';
 					}
-			  	drawGrid();
-					moves++;
-					if (!won&&moves==9){
-						Flash(3);//red led on
-						Timer2_Init(30);
-						Clear_Led(3);//red led off
-						Nokia5110_ClearBuffer();
-						Nokia5110_DisplayBuffer();
-						Nokia5110_SetCursor(2, 2);
-						Nokia5110_OutString("NO");
-						Nokia5110_DisplayBuffer();
-						Timer2_Init(6);
-						Nokia5110_SetCursor(3, 3);
-						Nokia5110_OutString("ONE");
-						Nokia5110_DisplayBuffer();
-						Timer2_Init(6);
-						Nokia5110_SetCursor(4, 4);
-						Nokia5110_OutString("WIN!!");
-						Nokia5110_DisplayBuffer();
-						Timer2_Init(30);
-						return;
-			}
-					}
+				moves++;
+				if (!won && moves== 9){
+				Flash(3);//red led on
+				Timer2_Init(50);
+				Clear_Led(3);//red led off
+				Nokia5110_ClearBuffer();
+				Nokia5110_DisplayBuffer();
+				Nokia5110_SetCursor(1, 1);
+				Nokia5110_OutString("NO");
+				Timer2_Init(40);
+				Nokia5110_DisplayBuffer();
+				Timer2_Init(40);
+				Nokia5110_SetCursor(3, 2);
+				Nokia5110_OutString("ONE");
+				Timer2_Init(40);
+				Nokia5110_DisplayBuffer();
+				Timer2_Init(40);
+				Nokia5110_SetCursor(6, 3);
+				Nokia5110_OutString("WIN!");
+				Timer2_Init(100);
+				Nokia5110_DisplayBuffer();
+				Timer2_Init(100);
+				return;
+				}
+				drawGrid();
+				}
 					break;	
 		case 'w':
 			Timer2_Init(10);

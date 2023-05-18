@@ -21,13 +21,13 @@ void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R & (1<<0) && flag ==3){
 	  
 	}
-	if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
+	if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
 			 PortE_Init();
 			 PortB_Init();
 			 drawGrid();
 			 flag =1;
 	}
-	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
+	else if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
 			PortE_Init();
 			drawGrid();
 			flag=2;
@@ -80,6 +80,8 @@ void GPIOPortB_Handler(void){
 void GPIOPortE_Handler(void){
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
+		if (turn =='X') Set_Led(0);
+		else Set_Led(2);
 		Timer2_Init(20);
 		GPIO_PORTE_ICR_R|= (1<<1);
 		Timer2_Init(10);
@@ -105,53 +107,80 @@ if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)
 						}
 						Clear_Led(0);
 						turn='O';
+						if (turn =='X') Set_Led(0);
+						else Set_Led(2);
 					}
-			else{ 
-				Set_Led(2);
-				matrix[cursor]='O';
-				win = check_winner (matrix, turn);
-				if (win == 1){
-					Flash(2);//red led on
-					Timer2_Init(100);
-					Clear_Led(2);//red led off
-					Nokia5110_ClearBuffer();
-					Nokia5110_DisplayBuffer();
-					Nokia5110_SetCursor(3, 2);
-					Nokia5110_OutChar(turn);
-					Nokia5110_OutString("-Player");
-					Nokia5110_SetCursor(4, 3);
-					Nokia5110_OutString("wins");
-					Timer2_Init(100);
-					Nokia5110_DisplayBuffer();
-					Timer2_Init(100);
-					return;
-				}						
-				Clear_Led(2);
-				turn='X';
-			}
-			drawGrid();
+				else{ 
+					matrix[cursor]='O';
+					win = check_winner (matrix, turn);
+					if (win == 1){
+						Flash(2);//red led on
+						Timer2_Init(100);
+						Clear_Led(2);//red led off
+						Nokia5110_ClearBuffer();
+						Nokia5110_DisplayBuffer();
+						Nokia5110_SetCursor(3, 2);
+						Nokia5110_OutChar(turn);
+						Nokia5110_OutString("-Player");
+						Nokia5110_SetCursor(4, 3);
+						Nokia5110_OutString("wins");
+						Timer2_Init(100);
+						Nokia5110_DisplayBuffer();
+						Timer2_Init(100);
+						return;
+					}						
+					Clear_Led(2);
+					turn='X';
+					if (turn =='X') Set_Led(0);
+					else Set_Led(2);
+				}
 			moves++;
-			if (!win&&moves==9){
+			if (!win && moves == 9){
+					Clear_Led(0);
+					Clear_Led(2);
 					Flash(3);//red led on
 					Timer2_Init(50);
 					Clear_Led(3);//red led off
 					Nokia5110_ClearBuffer();
 					Nokia5110_DisplayBuffer();
-					Nokia5110_SetCursor(2, 2);
+					Nokia5110_SetCursor(1, 1);
 					Nokia5110_OutString("NO");
+					Timer2_Init(40);
 					Nokia5110_DisplayBuffer();
-					Timer2_Init(6);
-					Nokia5110_SetCursor(3, 3);
+					Timer2_Init(40);
+					Nokia5110_SetCursor(3, 2);
 					Nokia5110_OutString("ONE");
+					Timer2_Init(40);
 					Nokia5110_DisplayBuffer();
-					Timer2_Init(6);
-					Nokia5110_SetCursor(4, 4);
-					Nokia5110_OutString("WIN!!");
+					Timer2_Init(40);
+					Nokia5110_SetCursor(6, 3);
+					Nokia5110_OutString("WIN!");
+					Timer2_Init(100);
 					Nokia5110_DisplayBuffer();
-					Timer2_Init(6);
+					Timer2_Init(100);
 					return;
 			}
+			drawGrid();
 		}
 	}			
 }
 
+volatile int adcData;
+volatile int posX;
+void ADC0Seq3_Handler (void)
+{
+
+		if((ADC0_RIS_R & (1<<3)) == (1<<3))
+		{
+				Nokia5110_ClearBuffer();
+			//Acknowlege interrupt
+			ADC0_RIS_R |= (1<<3); // CLEAR I BIT
+			Timer2_Init(20);
+			adcData = ADC0_SSFIFO3_R;
+			cursor = (adcData%9);
+			drawGrid();
+			Nokia5110_DisplayBuffer();
+			
+		}
+	
+}

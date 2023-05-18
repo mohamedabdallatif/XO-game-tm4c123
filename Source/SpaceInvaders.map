@@ -10,6 +10,7 @@ Section Cross References
     startup.o(RESET) refers to startup.o(STACK) for StackMem
     startup.o(RESET) refers to interrupt.o(i.GPIOPortB_Handler) for GPIOPortB_Handler
     startup.o(RESET) refers to interrupt.o(i.GPIOPortE_Handler) for GPIOPortE_Handler
+    startup.o(RESET) refers to interrupt.o(i.ADC0Seq3_Handler) for ADC0Seq3_Handler
     startup.o(RESET) refers to interrupt.o(i.GPIOPortF_Handler) for GPIOPortF_Handler
     startup.o(RESET) refers to texas.o(i.Timer4A_Handler) for Timer4A_Handler
     startup.o(RESET) refers to texas.o(i.Timer5A_Handler) for Timer5A_Handler
@@ -20,6 +21,8 @@ Section Cross References
     random.o(.text) refers to random.o(DATA) for M
     xogame.o(i.main) refers to texas.o(i.TExaS_Init) for TExaS_Init
     xogame.o(i.main) refers to gpio_driver.o(i.PortF_Init) for PortF_Init
+    xogame.o(i.main) refers to uart.o(i.UART_Init) for UART_Init
+    xogame.o(i.main) refers to adc.o(i.ADC_Init) for ADC_Init
     xogame.o(i.main) refers to nokia5110.o(i.Nokia5110_Init) for Nokia5110_Init
     xogame.o(i.main) refers to run.o(i.Xo_Init) for Xo_Init
     gpio_driver.o(i.PortB_Init) refers to startup.o(.text) for EnableInterrupts
@@ -28,10 +31,17 @@ Section Cross References
     gpio_driver.o(i.PortE_Init) refers to gpio_driver.o(.data) for delay
     gpio_driver.o(i.PortF_Init) refers to startup.o(.text) for EnableInterrupts
     gpio_driver.o(i.PortF_Init) refers to gpio_driver.o(.data) for delay
+    interrupt.o(i.ADC0Seq3_Handler) refers to nokia5110.o(i.Nokia5110_ClearBuffer) for Nokia5110_ClearBuffer
+    interrupt.o(i.ADC0Seq3_Handler) refers to timer2.o(i.Timer2_Init) for Timer2_Init
+    interrupt.o(i.ADC0Seq3_Handler) refers to run.o(i.drawGrid) for drawGrid
+    interrupt.o(i.ADC0Seq3_Handler) refers to nokia5110.o(i.Nokia5110_DisplayBuffer) for Nokia5110_DisplayBuffer
+    interrupt.o(i.ADC0Seq3_Handler) refers to interrupt.o(.data) for adcData
+    interrupt.o(i.ADC0Seq3_Handler) refers to run.o(.data) for cursor
     interrupt.o(i.GPIOPortB_Handler) refers to timer2.o(i.Timer2_Init) for Timer2_Init
     interrupt.o(i.GPIOPortB_Handler) refers to run.o(i.drawGrid) for drawGrid
     interrupt.o(i.GPIOPortB_Handler) refers to interrupt.o(.data) for flag
     interrupt.o(i.GPIOPortB_Handler) refers to run.o(.data) for cursor
+    interrupt.o(i.GPIOPortE_Handler) refers to leds.o(i.Set_Led) for Set_Led
     interrupt.o(i.GPIOPortE_Handler) refers to timer2.o(i.Timer2_Init) for Timer2_Init
     interrupt.o(i.GPIOPortE_Handler) refers to check_winner.o(i.check_winner) for check_winner
     interrupt.o(i.GPIOPortE_Handler) refers to leds.o(i.Flash) for Flash
@@ -41,10 +51,9 @@ Section Cross References
     interrupt.o(i.GPIOPortE_Handler) refers to nokia5110.o(i.Nokia5110_SetCursor) for Nokia5110_SetCursor
     interrupt.o(i.GPIOPortE_Handler) refers to nokia5110.o(i.Nokia5110_OutChar) for Nokia5110_OutChar
     interrupt.o(i.GPIOPortE_Handler) refers to nokia5110.o(i.Nokia5110_OutString) for Nokia5110_OutString
-    interrupt.o(i.GPIOPortE_Handler) refers to leds.o(i.Set_Led) for Set_Led
     interrupt.o(i.GPIOPortE_Handler) refers to run.o(i.drawGrid) for drawGrid
     interrupt.o(i.GPIOPortE_Handler) refers to interrupt.o(.data) for flag
-    interrupt.o(i.GPIOPortE_Handler) refers to run.o(.data) for matrix
+    interrupt.o(i.GPIOPortE_Handler) refers to run.o(.data) for turn
     interrupt.o(i.GPIOPortF_Handler) refers to gpio_driver.o(i.PortE_Init) for PortE_Init
     interrupt.o(i.GPIOPortF_Handler) refers to gpio_driver.o(i.PortB_Init) for PortB_Init
     interrupt.o(i.GPIOPortF_Handler) refers to run.o(i.drawGrid) for drawGrid
@@ -106,6 +115,7 @@ Section Cross References
     leds.o(i.Flash) refers to leds.o(i.Clear_Led) for Clear_Led
     leds.o(i.Start_Game) refers to leds.o(i.Set_Led) for Set_Led
     leds.o(i.Start_Game) refers to timer2.o(i.Timer2_Init) for Timer2_Init
+    adc.o(i.ADC_Init) refers to adc.o(.data) for z
     check_winner.o(i.check_winner) refers to run.o(.data) for scoreX
     run.o(i.Xo_Init) refers to nokia5110.o(i.Nokia5110_ClearBuffer) for Nokia5110_ClearBuffer
     run.o(i.Xo_Init) refers to nokia5110.o(i.Nokia5110_DisplayBuffer) for Nokia5110_DisplayBuffer
@@ -245,13 +255,12 @@ Removing Unused input sections from the image.
     Removing texas.o(i.UART0_OutChar), (24 bytes).
     Removing texas.o(i.UART0_OutCharNonBlock), (12 bytes).
     Removing texas.o(i.copy), (18 bytes).
-    Removing uart.o(i.UART_Init), (152 bytes).
     Removing uart.o(.constdata), (480 bytes).
     Removing leds.o(.data), (4 bytes).
     Removing run.o(i.result), (108 bytes).
     Removing run.o(.constdata), (480 bytes).
 
-21 unused section(s) (total 3338 bytes) removed from the image.
+20 unused section(s) (total 3186 bytes) removed from the image.
 
 ==============================================================================
 
@@ -262,27 +271,27 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      644  startup.o(RESET)
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
-    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
+    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry4.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
@@ -290,28 +299,29 @@ Image Symbol Table
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
     XoGame.c                                 0x00000000   Number         0  xogame.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    drivers\ADC.c                            0x00000000   Number         0  adc.o ABSOLUTE
     drivers\Leds.c                           0x00000000   Number         0  leds.o ABSOLUTE
     drivers\Nokia5110.c                      0x00000000   Number         0  nokia5110.o ABSOLUTE
     drivers\TExaS.c                          0x00000000   Number         0  texas.o ABSOLUTE
@@ -374,61 +384,65 @@ Image Symbol Table
     .text                                    0x000003b4   Section        0  sys_exit.o(.text)
     .text                                    0x000003c0   Section        2  use_no_semi.o(.text)
     .text                                    0x000003c2   Section        0  indicate_semi.o(.text)
-    i.ADC1_In                                0x000003c4   Section        0  texas.o(i.ADC1_In)
-    i.ADC1_Init                              0x000003d0   Section        0  texas.o(i.ADC1_Init)
-    i.Clear_ALL                              0x000004a4   Section        0  leds.o(i.Clear_ALL)
-    i.Clear_Led                              0x000004bc   Section        0  leds.o(i.Clear_Led)
-    i.Clear_Led_PF1                          0x000004dc   Section        0  leds.o(i.Clear_Led_PF1)
-    i.Flash                                  0x000004f4   Section        0  leds.o(i.Flash)
-    i.GPIOPortB_Handler                      0x0000051c   Section        0  interrupt.o(i.GPIOPortB_Handler)
-    i.GPIOPortE_Handler                      0x00000628   Section        0  interrupt.o(i.GPIOPortE_Handler)
-    i.GPIOPortF_Handler                      0x00000834   Section        0  interrupt.o(i.GPIOPortF_Handler)
-    i.Nokia5110_ClearBuffer                  0x0000091c   Section        0  nokia5110.o(i.Nokia5110_ClearBuffer)
-    i.Nokia5110_DisplayBuffer                0x00000934   Section        0  nokia5110.o(i.Nokia5110_DisplayBuffer)
-    i.Nokia5110_DrawFullImage                0x00000944   Section        0  nokia5110.o(i.Nokia5110_DrawFullImage)
-    i.Nokia5110_Init                         0x00000968   Section        0  nokia5110.o(i.Nokia5110_Init)
-    i.Nokia5110_OutChar                      0x00000ad4   Section        0  nokia5110.o(i.Nokia5110_OutChar)
-    i.Nokia5110_OutString                    0x00000b0c   Section        0  nokia5110.o(i.Nokia5110_OutString)
-    i.Nokia5110_SetCursor                    0x00000b22   Section        0  nokia5110.o(i.Nokia5110_SetCursor)
-    i.PLL_Init                               0x00000b54   Section        0  texas.o(i.PLL_Init)
-    i.PortB_Init                             0x00000bd0   Section        0  gpio_driver.o(i.PortB_Init)
-    i.PortE_Init                             0x00000ca4   Section        0  gpio_driver.o(i.PortE_Init)
-    i.PortF_Init                             0x00000d80   Section        0  gpio_driver.o(i.PortF_Init)
-    i.SetCode                                0x00000e74   Section        0  texas.o(i.SetCode)
-    i.SetCourse                              0x00000e8c   Section        0  texas.o(i.SetCourse)
-    i.Set_Led                                0x00000ea4   Section        0  leds.o(i.Set_Led)
-    i.Start_Game                             0x00000ec4   Section        0  leds.o(i.Start_Game)
-    i.TExaS_Init                             0x00000eec   Section        0  texas.o(i.TExaS_Init)
-    i.Timer2_Init                            0x000010b0   Section        0  timer2.o(i.Timer2_Init)
-    i.Timer4A_Handler                        0x0000111c   Section        0  texas.o(i.Timer4A_Handler)
-    i.Timer5A_Handler                        0x0000113c   Section        0  texas.o(i.Timer5A_Handler)
-    i.UART                                   0x0000116c   Section        0  uart.o(i.UART)
-    i.UART0_Init                             0x00001450   Section        0  texas.o(i.UART0_Init)
-    i.UART_InChar                            0x00001510   Section        0  uart.o(i.UART_InChar)
-    i.UART_OutChar                           0x00001528   Section        0  uart.o(i.UART_OutChar)
-    i.UART_OutString                         0x00001540   Section        0  uart.o(i.UART_OutString)
-    i.Xo_Init                                0x00001558   Section        0  run.o(i.Xo_Init)
-    i.check_winner                           0x00001590   Section        0  check_winner.o(i.check_winner)
-    i.drawGrid                               0x0000168c   Section        0  run.o(i.drawGrid)
-    i.lcdwrite                               0x00001830   Section        0  nokia5110.o(i.lcdwrite)
-    lcdwrite                                 0x00001831   Thumb Code    66  nokia5110.o(i.lcdwrite)
-    i.main                                   0x0000187c   Section        0  xogame.o(i.main)
-    .constdata                               0x00001892   Section      480  nokia5110.o(.constdata)
-    ASCII                                    0x00001892   Data         480  nokia5110.o(.constdata)
-    .constdata                               0x00001a72   Section      360  texas.o(.constdata)
+    i.ADC0Seq3_Handler                       0x000003c4   Section        0  interrupt.o(i.ADC0Seq3_Handler)
+    i.ADC1_In                                0x00000420   Section        0  texas.o(i.ADC1_In)
+    i.ADC1_Init                              0x0000042c   Section        0  texas.o(i.ADC1_Init)
+    i.ADC_Init                               0x00000500   Section        0  adc.o(i.ADC_Init)
+    i.Clear_ALL                              0x000005c0   Section        0  leds.o(i.Clear_ALL)
+    i.Clear_Led                              0x000005d8   Section        0  leds.o(i.Clear_Led)
+    i.Clear_Led_PF1                          0x000005f8   Section        0  leds.o(i.Clear_Led_PF1)
+    i.Flash                                  0x00000610   Section        0  leds.o(i.Flash)
+    i.GPIOPortB_Handler                      0x00000638   Section        0  interrupt.o(i.GPIOPortB_Handler)
+    i.GPIOPortE_Handler                      0x00000744   Section        0  interrupt.o(i.GPIOPortE_Handler)
+    i.GPIOPortF_Handler                      0x000009a8   Section        0  interrupt.o(i.GPIOPortF_Handler)
+    i.Nokia5110_ClearBuffer                  0x00000a90   Section        0  nokia5110.o(i.Nokia5110_ClearBuffer)
+    i.Nokia5110_DisplayBuffer                0x00000aa8   Section        0  nokia5110.o(i.Nokia5110_DisplayBuffer)
+    i.Nokia5110_DrawFullImage                0x00000ab8   Section        0  nokia5110.o(i.Nokia5110_DrawFullImage)
+    i.Nokia5110_Init                         0x00000adc   Section        0  nokia5110.o(i.Nokia5110_Init)
+    i.Nokia5110_OutChar                      0x00000c48   Section        0  nokia5110.o(i.Nokia5110_OutChar)
+    i.Nokia5110_OutString                    0x00000c80   Section        0  nokia5110.o(i.Nokia5110_OutString)
+    i.Nokia5110_SetCursor                    0x00000c96   Section        0  nokia5110.o(i.Nokia5110_SetCursor)
+    i.PLL_Init                               0x00000cc8   Section        0  texas.o(i.PLL_Init)
+    i.PortB_Init                             0x00000d44   Section        0  gpio_driver.o(i.PortB_Init)
+    i.PortE_Init                             0x00000e18   Section        0  gpio_driver.o(i.PortE_Init)
+    i.PortF_Init                             0x00000ef4   Section        0  gpio_driver.o(i.PortF_Init)
+    i.SetCode                                0x00000fe8   Section        0  texas.o(i.SetCode)
+    i.SetCourse                              0x00001000   Section        0  texas.o(i.SetCourse)
+    i.Set_Led                                0x00001018   Section        0  leds.o(i.Set_Led)
+    i.Start_Game                             0x00001038   Section        0  leds.o(i.Start_Game)
+    i.TExaS_Init                             0x00001060   Section        0  texas.o(i.TExaS_Init)
+    i.Timer2_Init                            0x00001224   Section        0  timer2.o(i.Timer2_Init)
+    i.Timer4A_Handler                        0x00001290   Section        0  texas.o(i.Timer4A_Handler)
+    i.Timer5A_Handler                        0x000012b0   Section        0  texas.o(i.Timer5A_Handler)
+    i.UART                                   0x000012e0   Section        0  uart.o(i.UART)
+    i.UART0_Init                             0x000015c8   Section        0  texas.o(i.UART0_Init)
+    i.UART_InChar                            0x00001688   Section        0  uart.o(i.UART_InChar)
+    i.UART_Init                              0x000016a0   Section        0  uart.o(i.UART_Init)
+    i.UART_OutChar                           0x00001738   Section        0  uart.o(i.UART_OutChar)
+    i.UART_OutString                         0x00001750   Section        0  uart.o(i.UART_OutString)
+    i.Xo_Init                                0x00001768   Section        0  run.o(i.Xo_Init)
+    i.check_winner                           0x000017a0   Section        0  check_winner.o(i.check_winner)
+    i.drawGrid                               0x0000189c   Section        0  run.o(i.drawGrid)
+    i.lcdwrite                               0x00001a40   Section        0  nokia5110.o(i.lcdwrite)
+    lcdwrite                                 0x00001a41   Thumb Code    66  nokia5110.o(i.lcdwrite)
+    i.main                                   0x00001a8c   Section        0  xogame.o(i.main)
+    .constdata                               0x00001aaa   Section      480  nokia5110.o(.constdata)
+    ASCII                                    0x00001aaa   Data         480  nokia5110.o(.constdata)
+    .constdata                               0x00001c8a   Section      360  texas.o(.constdata)
     .data                                    0x20000000   Section        4  gpio_driver.o(.data)
-    .data                                    0x20000004   Section        9  interrupt.o(.data)
-    .data                                    0x20000010   Section        8  timer2.o(.data)
-    .data                                    0x20000018   Section       52  texas.o(.data)
-    .data                                    0x2000004c   Section        1  uart.o(.data)
-    .data                                    0x20000050   Section       48  run.o(.data)
-    .bss                                     0x20000080   Section      504  nokia5110.o(.bss)
-    .bss                                     0x20000278   Section       56  texas.o(.bss)
-    .bss                                     0x200002b0   Section       96  libspace.o(.bss)
-    HEAP                                     0x20000310   Section        0  startup.o(HEAP)
-    STACK                                    0x20000310   Section     1024  startup.o(STACK)
-    HeapMem                                  0x20000310   Data           0  startup.o(HEAP)
-    StackMem                                 0x20000310   Data           0  startup.o(STACK)
+    .data                                    0x20000004   Section       20  interrupt.o(.data)
+    .data                                    0x20000018   Section        8  timer2.o(.data)
+    .data                                    0x20000020   Section       52  texas.o(.data)
+    .data                                    0x20000054   Section        1  uart.o(.data)
+    .data                                    0x20000058   Section        4  adc.o(.data)
+    .data                                    0x2000005c   Section       48  run.o(.data)
+    .bss                                     0x2000008c   Section      504  nokia5110.o(.bss)
+    .bss                                     0x20000288   Section       56  texas.o(.bss)
+    .bss                                     0x200002c0   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000320   Section        0  startup.o(HEAP)
+    STACK                                    0x20000320   Section     1024  startup.o(STACK)
+    HeapMem                                  0x20000320   Data           0  startup.o(HEAP)
+    StackMem                                 0x20000320   Data           0  startup.o(STACK)
 
     Global Symbols
 
@@ -477,7 +491,6 @@ Image Symbol Table
     ADC0Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     ADC0Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     ADC0Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
-    ADC0Seq3_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     ADC1Seq0_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     ADC1Seq1_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
     ADC1Seq2_Handler                         0x00000283   Thumb Code     0  startup.o(RESET)
@@ -647,89 +660,95 @@ Image Symbol Table
     __I$use$semihosting                      0x000003c1   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x000003c1   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x000003c3   Thumb Code     0  indicate_semi.o(.text)
-    ADC1_In                                  0x000003c5   Thumb Code     6  texas.o(i.ADC1_In)
-    ADC1_Init                                0x000003d1   Thumb Code   174  texas.o(i.ADC1_Init)
-    Clear_ALL                                0x000004a5   Thumb Code    22  leds.o(i.Clear_ALL)
-    Clear_Led                                0x000004bd   Thumb Code    24  leds.o(i.Clear_Led)
-    Clear_Led_PF1                            0x000004dd   Thumb Code    16  leds.o(i.Clear_Led_PF1)
-    Flash                                    0x000004f5   Thumb Code    40  leds.o(i.Flash)
-    GPIOPortB_Handler                        0x0000051d   Thumb Code   254  interrupt.o(i.GPIOPortB_Handler)
-    GPIOPortE_Handler                        0x00000629   Thumb Code   464  interrupt.o(i.GPIOPortE_Handler)
-    GPIOPortF_Handler                        0x00000835   Thumb Code   218  interrupt.o(i.GPIOPortF_Handler)
-    Nokia5110_ClearBuffer                    0x0000091d   Thumb Code    20  nokia5110.o(i.Nokia5110_ClearBuffer)
-    Nokia5110_DisplayBuffer                  0x00000935   Thumb Code    10  nokia5110.o(i.Nokia5110_DisplayBuffer)
-    Nokia5110_DrawFullImage                  0x00000945   Thumb Code    34  nokia5110.o(i.Nokia5110_DrawFullImage)
-    Nokia5110_Init                           0x00000969   Thumb Code   316  nokia5110.o(i.Nokia5110_Init)
-    Nokia5110_OutChar                        0x00000ad5   Thumb Code    52  nokia5110.o(i.Nokia5110_OutChar)
-    Nokia5110_OutString                      0x00000b0d   Thumb Code    22  nokia5110.o(i.Nokia5110_OutString)
-    Nokia5110_SetCursor                      0x00000b23   Thumb Code    48  nokia5110.o(i.Nokia5110_SetCursor)
-    PLL_Init                                 0x00000b55   Thumb Code   118  texas.o(i.PLL_Init)
-    PortB_Init                               0x00000bd1   Thumb Code   158  gpio_driver.o(i.PortB_Init)
-    PortE_Init                               0x00000ca5   Thumb Code   166  gpio_driver.o(i.PortE_Init)
-    PortF_Init                               0x00000d81   Thumb Code   190  gpio_driver.o(i.PortF_Init)
-    SetCode                                  0x00000e75   Thumb Code    20  texas.o(i.SetCode)
-    SetCourse                                0x00000e8d   Thumb Code    20  texas.o(i.SetCourse)
-    Set_Led                                  0x00000ea5   Thumb Code    24  leds.o(i.Set_Led)
-    Start_Game                               0x00000ec5   Thumb Code    40  leds.o(i.Start_Game)
-    TExaS_Init                               0x00000eed   Thumb Code   324  texas.o(i.TExaS_Init)
-    Timer2_Init                              0x000010b1   Thumb Code    86  timer2.o(i.Timer2_Init)
-    Timer4A_Handler                          0x0000111d   Thumb Code    20  texas.o(i.Timer4A_Handler)
-    Timer5A_Handler                          0x0000113d   Thumb Code    34  texas.o(i.Timer5A_Handler)
-    UART                                     0x0000116d   Thumb Code   670  uart.o(i.UART)
-    UART0_Init                               0x00001451   Thumb Code   160  texas.o(i.UART0_Init)
-    UART_InChar                              0x00001511   Thumb Code    20  uart.o(i.UART_InChar)
-    UART_OutChar                             0x00001529   Thumb Code    18  uart.o(i.UART_OutChar)
-    UART_OutString                           0x00001541   Thumb Code    22  uart.o(i.UART_OutString)
-    Xo_Init                                  0x00001559   Thumb Code    40  run.o(i.Xo_Init)
-    check_winner                             0x00001591   Thumb Code   244  check_winner.o(i.check_winner)
-    drawGrid                                 0x0000168d   Thumb Code   372  run.o(i.drawGrid)
-    main                                     0x0000187d   Thumb Code    22  xogame.o(i.main)
-    NoInputMsg                               0x00001a72   Data          40  texas.o(.constdata)
-    OutputPortMsg0                           0x00001a9a   Data          40  texas.o(.constdata)
-    OutputPortMsg1                           0x00001ac2   Data          40  texas.o(.constdata)
-    OutputPortMsg2                           0x00001aea   Data          40  texas.o(.constdata)
-    OutputPortMsg3                           0x00001b12   Data          40  texas.o(.constdata)
-    BlankMsg                                 0x00001b3a   Data          40  texas.o(.constdata)
-    InitializedMsg                           0x00001b62   Data          40  texas.o(.constdata)
-    IntroMsg                                 0x00001b8a   Data          40  texas.o(.constdata)
-    DoneMsg                                  0x00001bb2   Data          40  texas.o(.constdata)
-    Region$$Table$$Base                      0x00001bdc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001bfc   Number         0  anon$$obj.o(Region$$Table)
+    ADC0Seq3_Handler                         0x000003c5   Thumb Code    74  interrupt.o(i.ADC0Seq3_Handler)
+    ADC1_In                                  0x00000421   Thumb Code     6  texas.o(i.ADC1_In)
+    ADC1_Init                                0x0000042d   Thumb Code   174  texas.o(i.ADC1_Init)
+    ADC_Init                                 0x00000501   Thumb Code   166  adc.o(i.ADC_Init)
+    Clear_ALL                                0x000005c1   Thumb Code    22  leds.o(i.Clear_ALL)
+    Clear_Led                                0x000005d9   Thumb Code    24  leds.o(i.Clear_Led)
+    Clear_Led_PF1                            0x000005f9   Thumb Code    16  leds.o(i.Clear_Led_PF1)
+    Flash                                    0x00000611   Thumb Code    40  leds.o(i.Flash)
+    GPIOPortB_Handler                        0x00000639   Thumb Code   254  interrupt.o(i.GPIOPortB_Handler)
+    GPIOPortE_Handler                        0x00000745   Thumb Code   552  interrupt.o(i.GPIOPortE_Handler)
+    GPIOPortF_Handler                        0x000009a9   Thumb Code   218  interrupt.o(i.GPIOPortF_Handler)
+    Nokia5110_ClearBuffer                    0x00000a91   Thumb Code    20  nokia5110.o(i.Nokia5110_ClearBuffer)
+    Nokia5110_DisplayBuffer                  0x00000aa9   Thumb Code    10  nokia5110.o(i.Nokia5110_DisplayBuffer)
+    Nokia5110_DrawFullImage                  0x00000ab9   Thumb Code    34  nokia5110.o(i.Nokia5110_DrawFullImage)
+    Nokia5110_Init                           0x00000add   Thumb Code   316  nokia5110.o(i.Nokia5110_Init)
+    Nokia5110_OutChar                        0x00000c49   Thumb Code    52  nokia5110.o(i.Nokia5110_OutChar)
+    Nokia5110_OutString                      0x00000c81   Thumb Code    22  nokia5110.o(i.Nokia5110_OutString)
+    Nokia5110_SetCursor                      0x00000c97   Thumb Code    48  nokia5110.o(i.Nokia5110_SetCursor)
+    PLL_Init                                 0x00000cc9   Thumb Code   118  texas.o(i.PLL_Init)
+    PortB_Init                               0x00000d45   Thumb Code   158  gpio_driver.o(i.PortB_Init)
+    PortE_Init                               0x00000e19   Thumb Code   166  gpio_driver.o(i.PortE_Init)
+    PortF_Init                               0x00000ef5   Thumb Code   190  gpio_driver.o(i.PortF_Init)
+    SetCode                                  0x00000fe9   Thumb Code    20  texas.o(i.SetCode)
+    SetCourse                                0x00001001   Thumb Code    20  texas.o(i.SetCourse)
+    Set_Led                                  0x00001019   Thumb Code    24  leds.o(i.Set_Led)
+    Start_Game                               0x00001039   Thumb Code    40  leds.o(i.Start_Game)
+    TExaS_Init                               0x00001061   Thumb Code   324  texas.o(i.TExaS_Init)
+    Timer2_Init                              0x00001225   Thumb Code    86  timer2.o(i.Timer2_Init)
+    Timer4A_Handler                          0x00001291   Thumb Code    20  texas.o(i.Timer4A_Handler)
+    Timer5A_Handler                          0x000012b1   Thumb Code    34  texas.o(i.Timer5A_Handler)
+    UART                                     0x000012e1   Thumb Code   674  uart.o(i.UART)
+    UART0_Init                               0x000015c9   Thumb Code   160  texas.o(i.UART0_Init)
+    UART_InChar                              0x00001689   Thumb Code    20  uart.o(i.UART_InChar)
+    UART_Init                                0x000016a1   Thumb Code   126  uart.o(i.UART_Init)
+    UART_OutChar                             0x00001739   Thumb Code    18  uart.o(i.UART_OutChar)
+    UART_OutString                           0x00001751   Thumb Code    22  uart.o(i.UART_OutString)
+    Xo_Init                                  0x00001769   Thumb Code    40  run.o(i.Xo_Init)
+    check_winner                             0x000017a1   Thumb Code   244  check_winner.o(i.check_winner)
+    drawGrid                                 0x0000189d   Thumb Code   372  run.o(i.drawGrid)
+    main                                     0x00001a8d   Thumb Code    30  xogame.o(i.main)
+    NoInputMsg                               0x00001c8a   Data          40  texas.o(.constdata)
+    OutputPortMsg0                           0x00001cb2   Data          40  texas.o(.constdata)
+    OutputPortMsg1                           0x00001cda   Data          40  texas.o(.constdata)
+    OutputPortMsg2                           0x00001d02   Data          40  texas.o(.constdata)
+    OutputPortMsg3                           0x00001d2a   Data          40  texas.o(.constdata)
+    BlankMsg                                 0x00001d52   Data          40  texas.o(.constdata)
+    InitializedMsg                           0x00001d7a   Data          40  texas.o(.constdata)
+    IntroMsg                                 0x00001da2   Data          40  texas.o(.constdata)
+    DoneMsg                                  0x00001dca   Data          40  texas.o(.constdata)
+    Region$$Table$$Base                      0x00001df4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001e14   Number         0  anon$$obj.o(Region$$Table)
     delay                                    0x20000000   Data           4  gpio_driver.o(.data)
     flag                                     0x20000004   Data           4  interrupt.o(.data)
     moves                                    0x20000008   Data           4  interrupt.o(.data)
     win                                      0x2000000c   Data           1  interrupt.o(.data)
-    TimerCount                               0x20000010   Data           4  timer2.o(.data)
-    Semaphore                                0x20000014   Data           4  timer2.o(.data)
-    TExaS_Period                             0x20000018   Data           4  texas.o(.data)
-    TExaS_Ports                              0x2000001c   Data           8  texas.o(.data)
-    Display                                  0x20000024   Data           1  texas.o(.data)
-    TExaS_Meter                              0x20000028   Data           4  texas.o(.data)
-    ADCnum                                   0x2000002c   Data           4  texas.o(.data)
-    LastMode                                 0x20000030   Data           4  texas.o(.data)
-    bFlag                                    0x20000034   Data           4  texas.o(.data)
-    Count                                    0x20000038   Data           4  texas.o(.data)
-    DelayBetweenTests                        0x2000003c   Data           4  texas.o(.data)
-    TExaS_Test                               0x20000040   Data           4  texas.o(.data)
-    ScopeMode                                0x20000044   Data           4  texas.o(.data)
-    ScopeCount                               0x20000048   Data           4  texas.o(.data)
-    won                                      0x2000004c   Data           1  uart.o(.data)
-    i                                        0x20000050   Data           4  run.o(.data)
-    j                                        0x20000054   Data           4  run.o(.data)
-    position                                 0x20000058   Data           4  run.o(.data)
-    current_cursor                           0x2000005c   Data           4  run.o(.data)
-    matrix                                   0x20000060   Data          10  run.o(.data)
-    turn                                     0x2000006a   Data           1  run.o(.data)
-    x                                        0x2000006b   Data           1  run.o(.data)
-    o                                        0x2000006c   Data           1  run.o(.data)
-    scoreX                                   0x20000070   Data           4  run.o(.data)
-    scoreO                                   0x20000074   Data           4  run.o(.data)
-    cursor                                   0x20000078   Data           4  run.o(.data)
-    start                                    0x2000007c   Data           4  run.o(.data)
-    Screen                                   0x20000080   Data         504  nokia5110.o(.bss)
-    TExaS                                    0x20000278   Data          56  texas.o(.bss)
-    __libspace_start                         0x200002b0   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000310   Data           0  libspace.o(.bss)
+    adcData                                  0x20000010   Data           4  interrupt.o(.data)
+    posX                                     0x20000014   Data           4  interrupt.o(.data)
+    TimerCount                               0x20000018   Data           4  timer2.o(.data)
+    Semaphore                                0x2000001c   Data           4  timer2.o(.data)
+    TExaS_Period                             0x20000020   Data           4  texas.o(.data)
+    TExaS_Ports                              0x20000024   Data           8  texas.o(.data)
+    Display                                  0x2000002c   Data           1  texas.o(.data)
+    TExaS_Meter                              0x20000030   Data           4  texas.o(.data)
+    ADCnum                                   0x20000034   Data           4  texas.o(.data)
+    LastMode                                 0x20000038   Data           4  texas.o(.data)
+    bFlag                                    0x2000003c   Data           4  texas.o(.data)
+    Count                                    0x20000040   Data           4  texas.o(.data)
+    DelayBetweenTests                        0x20000044   Data           4  texas.o(.data)
+    TExaS_Test                               0x20000048   Data           4  texas.o(.data)
+    ScopeMode                                0x2000004c   Data           4  texas.o(.data)
+    ScopeCount                               0x20000050   Data           4  texas.o(.data)
+    won                                      0x20000054   Data           1  uart.o(.data)
+    z                                        0x20000058   Data           4  adc.o(.data)
+    i                                        0x2000005c   Data           4  run.o(.data)
+    j                                        0x20000060   Data           4  run.o(.data)
+    position                                 0x20000064   Data           4  run.o(.data)
+    current_cursor                           0x20000068   Data           4  run.o(.data)
+    matrix                                   0x2000006c   Data          10  run.o(.data)
+    turn                                     0x20000076   Data           1  run.o(.data)
+    x                                        0x20000077   Data           1  run.o(.data)
+    o                                        0x20000078   Data           1  run.o(.data)
+    scoreX                                   0x2000007c   Data           4  run.o(.data)
+    scoreO                                   0x20000080   Data           4  run.o(.data)
+    cursor                                   0x20000084   Data           4  run.o(.data)
+    start                                    0x20000088   Data           4  run.o(.data)
+    Screen                                   0x2000008c   Data         504  nokia5110.o(.bss)
+    TExaS                                    0x20000288   Data          56  texas.o(.bss)
+    __libspace_start                         0x200002c0   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000320   Data           0  libspace.o(.bss)
 
 
 
@@ -739,138 +758,142 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001c7c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001ea0, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x00001bfc, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00001e14, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
-    0x00000284   0x00000008   Code   RO          461  * !!!main             c_w.l(__main.o)
-    0x0000028c   0x00000034   Code   RO          615    !!!scatter          c_w.l(__scatter.o)
-    0x000002c0   0x0000001a   Code   RO          617    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000284   0x00000008   Code   RO          482  * !!!main             c_w.l(__main.o)
+    0x0000028c   0x00000034   Code   RO          636    !!!scatter          c_w.l(__scatter.o)
+    0x000002c0   0x0000001a   Code   RO          638    !!handler_copy      c_w.l(__scatter_copy.o)
     0x000002da   0x00000002   PAD
-    0x000002dc   0x0000001c   Code   RO          619    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x000002f8   0x00000002   Code   RO          488    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x000002fa   0x00000000   Code   RO          495    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          498    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          500    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          502    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          505    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          507    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          509    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          511    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          513    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          515    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          517    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          519    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          521    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          523    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          525    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          529    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          531    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          533    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          535    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x000002fa   0x00000002   Code   RO          536    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
-    0x000002fc   0x00000002   Code   RO          556    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x000002fe   0x00000000   Code   RO          570    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          573    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          576    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          578    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          581    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000002   Code   RO          582    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x00000300   0x00000000   Code   RO          463    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
-    0x00000300   0x00000000   Code   RO          465    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
-    0x00000300   0x00000006   Code   RO          477    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
-    0x00000306   0x00000000   Code   RO          467    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
-    0x00000306   0x00000004   Code   RO          468    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
-    0x0000030a   0x00000000   Code   RO          470    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
-    0x0000030a   0x00000008   Code   RO          471    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
-    0x00000312   0x00000002   Code   RO          492    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000314   0x00000000   Code   RO          538    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000314   0x00000004   Code   RO          539    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000318   0x00000006   Code   RO          540    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002dc   0x0000001c   Code   RO          640    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x000002f8   0x00000002   Code   RO          509    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x000002fa   0x00000000   Code   RO          516    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          519    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          521    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          523    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          526    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          528    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          530    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          532    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          534    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          536    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          538    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          540    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          542    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          544    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          546    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          550    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          552    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          554    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          556    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x000002fa   0x00000002   Code   RO          557    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
+    0x000002fc   0x00000002   Code   RO          577    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x000002fe   0x00000000   Code   RO          591    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          594    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          597    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          599    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          602    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000002   Code   RO          603    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x00000300   0x00000000   Code   RO          484    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
+    0x00000300   0x00000000   Code   RO          486    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
+    0x00000300   0x00000006   Code   RO          498    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
+    0x00000306   0x00000000   Code   RO          488    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
+    0x00000306   0x00000004   Code   RO          489    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
+    0x0000030a   0x00000000   Code   RO          491    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
+    0x0000030a   0x00000008   Code   RO          492    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
+    0x00000312   0x00000002   Code   RO          513    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000314   0x00000000   Code   RO          559    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000314   0x00000004   Code   RO          560    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000318   0x00000006   Code   RO          561    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0000031e   0x00000002   PAD
     0x00000320   0x00000030   Code   RO            4    .text               startup.o
-    0x00000350   0x00000006   Code   RO          459    .text               c_w.l(heapauxi.o)
-    0x00000356   0x0000004a   Code   RO          479    .text               c_w.l(sys_stackheap_outer.o)
-    0x000003a0   0x0000000c   Code   RO          481    .text               c_w.l(exit.o)
-    0x000003ac   0x00000008   Code   RO          489    .text               c_w.l(libspace.o)
-    0x000003b4   0x0000000c   Code   RO          548    .text               c_w.l(sys_exit.o)
-    0x000003c0   0x00000002   Code   RO          559    .text               c_w.l(use_no_semi.o)
-    0x000003c2   0x00000000   Code   RO          561    .text               c_w.l(indicate_semi.o)
+    0x00000350   0x00000006   Code   RO          480    .text               c_w.l(heapauxi.o)
+    0x00000356   0x0000004a   Code   RO          500    .text               c_w.l(sys_stackheap_outer.o)
+    0x000003a0   0x0000000c   Code   RO          502    .text               c_w.l(exit.o)
+    0x000003ac   0x00000008   Code   RO          510    .text               c_w.l(libspace.o)
+    0x000003b4   0x0000000c   Code   RO          569    .text               c_w.l(sys_exit.o)
+    0x000003c0   0x00000002   Code   RO          580    .text               c_w.l(use_no_semi.o)
+    0x000003c2   0x00000000   Code   RO          582    .text               c_w.l(indicate_semi.o)
     0x000003c2   0x00000002   PAD
-    0x000003c4   0x0000000c   Code   RO          193    i.ADC1_In           texas.o
-    0x000003d0   0x000000d4   Code   RO          194    i.ADC1_Init         texas.o
-    0x000004a4   0x00000016   Code   RO          360    i.Clear_ALL         leds.o
-    0x000004ba   0x00000002   PAD
-    0x000004bc   0x00000020   Code   RO          361    i.Clear_Led         leds.o
-    0x000004dc   0x00000018   Code   RO          362    i.Clear_Led_PF1     leds.o
-    0x000004f4   0x00000028   Code   RO          363    i.Flash             leds.o
-    0x0000051c   0x0000010c   Code   RO           68    i.GPIOPortB_Handler  interrupt.o
-    0x00000628   0x0000020c   Code   RO           69    i.GPIOPortE_Handler  interrupt.o
-    0x00000834   0x000000e8   Code   RO           70    i.GPIOPortF_Handler  interrupt.o
-    0x0000091c   0x00000018   Code   RO          119    i.Nokia5110_ClearBuffer  nokia5110.o
-    0x00000934   0x00000010   Code   RO          120    i.Nokia5110_DisplayBuffer  nokia5110.o
-    0x00000944   0x00000022   Code   RO          121    i.Nokia5110_DrawFullImage  nokia5110.o
-    0x00000966   0x00000002   PAD
-    0x00000968   0x0000016c   Code   RO          122    i.Nokia5110_Init    nokia5110.o
-    0x00000ad4   0x00000038   Code   RO          123    i.Nokia5110_OutChar  nokia5110.o
-    0x00000b0c   0x00000016   Code   RO          124    i.Nokia5110_OutString  nokia5110.o
-    0x00000b22   0x00000030   Code   RO          127    i.Nokia5110_SetCursor  nokia5110.o
-    0x00000b52   0x00000002   PAD
-    0x00000b54   0x0000007c   Code   RO          195    i.PLL_Init          texas.o
-    0x00000bd0   0x000000d4   Code   RO           38    i.PortB_Init        gpio_driver.o
-    0x00000ca4   0x000000dc   Code   RO           39    i.PortE_Init        gpio_driver.o
-    0x00000d80   0x000000f4   Code   RO           40    i.PortF_Init        gpio_driver.o
-    0x00000e74   0x00000018   Code   RO          196    i.SetCode           texas.o
-    0x00000e8c   0x00000018   Code   RO          197    i.SetCourse         texas.o
-    0x00000ea4   0x00000020   Code   RO          364    i.Set_Led           leds.o
-    0x00000ec4   0x00000028   Code   RO          365    i.Start_Game        leds.o
-    0x00000eec   0x000001c4   Code   RO          201    i.TExaS_Init        texas.o
-    0x000010b0   0x0000006c   Code   RO          103    i.Timer2_Init       timer2.o
-    0x0000111c   0x00000020   Code   RO          203    i.Timer4A_Handler   texas.o
-    0x0000113c   0x00000030   Code   RO          204    i.Timer5A_Handler   texas.o
-    0x0000116c   0x000002e4   Code   RO          313    i.UART              uart.o
-    0x00001450   0x000000c0   Code   RO          207    i.UART0_Init        texas.o
-    0x00001510   0x00000018   Code   RO          314    i.UART_InChar       uart.o
-    0x00001528   0x00000018   Code   RO          316    i.UART_OutChar      uart.o
-    0x00001540   0x00000016   Code   RO          317    i.UART_OutString    uart.o
-    0x00001556   0x00000002   PAD
-    0x00001558   0x00000038   Code   RO          419    i.Xo_Init           run.o
-    0x00001590   0x000000fc   Code   RO          408    i.check_winner      check_winner.o
-    0x0000168c   0x000001a4   Code   RO          420    i.drawGrid          run.o
-    0x00001830   0x0000004c   Code   RO          128    i.lcdwrite          nokia5110.o
-    0x0000187c   0x00000016   Code   RO           16    i.main              xogame.o
-    0x00001892   0x000001e0   Data   RO          130    .constdata          nokia5110.o
-    0x00001a72   0x00000168   Data   RO          212    .constdata          texas.o
-    0x00001bda   0x00000002   PAD
-    0x00001bdc   0x00000020   Data   RO          613    Region$$Table       anon$$obj.o
+    0x000003c4   0x0000005c   Code   RO           68    i.ADC0Seq3_Handler  interrupt.o
+    0x00000420   0x0000000c   Code   RO          199    i.ADC1_In           texas.o
+    0x0000042c   0x000000d4   Code   RO          200    i.ADC1_Init         texas.o
+    0x00000500   0x000000c0   Code   RO          414    i.ADC_Init          adc.o
+    0x000005c0   0x00000016   Code   RO          366    i.Clear_ALL         leds.o
+    0x000005d6   0x00000002   PAD
+    0x000005d8   0x00000020   Code   RO          367    i.Clear_Led         leds.o
+    0x000005f8   0x00000018   Code   RO          368    i.Clear_Led_PF1     leds.o
+    0x00000610   0x00000028   Code   RO          369    i.Flash             leds.o
+    0x00000638   0x0000010c   Code   RO           69    i.GPIOPortB_Handler  interrupt.o
+    0x00000744   0x00000264   Code   RO           70    i.GPIOPortE_Handler  interrupt.o
+    0x000009a8   0x000000e8   Code   RO           71    i.GPIOPortF_Handler  interrupt.o
+    0x00000a90   0x00000018   Code   RO          125    i.Nokia5110_ClearBuffer  nokia5110.o
+    0x00000aa8   0x00000010   Code   RO          126    i.Nokia5110_DisplayBuffer  nokia5110.o
+    0x00000ab8   0x00000022   Code   RO          127    i.Nokia5110_DrawFullImage  nokia5110.o
+    0x00000ada   0x00000002   PAD
+    0x00000adc   0x0000016c   Code   RO          128    i.Nokia5110_Init    nokia5110.o
+    0x00000c48   0x00000038   Code   RO          129    i.Nokia5110_OutChar  nokia5110.o
+    0x00000c80   0x00000016   Code   RO          130    i.Nokia5110_OutString  nokia5110.o
+    0x00000c96   0x00000030   Code   RO          133    i.Nokia5110_SetCursor  nokia5110.o
+    0x00000cc6   0x00000002   PAD
+    0x00000cc8   0x0000007c   Code   RO          201    i.PLL_Init          texas.o
+    0x00000d44   0x000000d4   Code   RO           38    i.PortB_Init        gpio_driver.o
+    0x00000e18   0x000000dc   Code   RO           39    i.PortE_Init        gpio_driver.o
+    0x00000ef4   0x000000f4   Code   RO           40    i.PortF_Init        gpio_driver.o
+    0x00000fe8   0x00000018   Code   RO          202    i.SetCode           texas.o
+    0x00001000   0x00000018   Code   RO          203    i.SetCourse         texas.o
+    0x00001018   0x00000020   Code   RO          370    i.Set_Led           leds.o
+    0x00001038   0x00000028   Code   RO          371    i.Start_Game        leds.o
+    0x00001060   0x000001c4   Code   RO          207    i.TExaS_Init        texas.o
+    0x00001224   0x0000006c   Code   RO          109    i.Timer2_Init       timer2.o
+    0x00001290   0x00000020   Code   RO          209    i.Timer4A_Handler   texas.o
+    0x000012b0   0x00000030   Code   RO          210    i.Timer5A_Handler   texas.o
+    0x000012e0   0x000002e8   Code   RO          319    i.UART              uart.o
+    0x000015c8   0x000000c0   Code   RO          213    i.UART0_Init        texas.o
+    0x00001688   0x00000018   Code   RO          320    i.UART_InChar       uart.o
+    0x000016a0   0x00000098   Code   RO          321    i.UART_Init         uart.o
+    0x00001738   0x00000018   Code   RO          322    i.UART_OutChar      uart.o
+    0x00001750   0x00000016   Code   RO          323    i.UART_OutString    uart.o
+    0x00001766   0x00000002   PAD
+    0x00001768   0x00000038   Code   RO          440    i.Xo_Init           run.o
+    0x000017a0   0x000000fc   Code   RO          429    i.check_winner      check_winner.o
+    0x0000189c   0x000001a4   Code   RO          441    i.drawGrid          run.o
+    0x00001a40   0x0000004c   Code   RO          134    i.lcdwrite          nokia5110.o
+    0x00001a8c   0x0000001e   Code   RO           16    i.main              xogame.o
+    0x00001aaa   0x000001e0   Data   RO          136    .constdata          nokia5110.o
+    0x00001c8a   0x00000168   Data   RO          218    .constdata          texas.o
+    0x00001df2   0x00000002   PAD
+    0x00001df4   0x00000020   Data   RO          634    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000080, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x0000008c, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00000004   Data   RW           41    .data               gpio_driver.o
-    0x20000004   0x00000009   Data   RW           72    .data               interrupt.o
-    0x2000000d   0x00000003   PAD
-    0x20000010   0x00000008   Data   RW          104    .data               timer2.o
-    0x20000018   0x00000034   Data   RW          213    .data               texas.o
-    0x2000004c   0x00000001   Data   RW          319    .data               uart.o
-    0x2000004d   0x00000003   PAD
-    0x20000050   0x00000030   Data   RW          423    .data               run.o
+    0x20000004   0x00000014   Data   RW           73    .data               interrupt.o
+    0x20000018   0x00000008   Data   RW          110    .data               timer2.o
+    0x20000020   0x00000034   Data   RW          219    .data               texas.o
+    0x20000054   0x00000001   Data   RW          325    .data               uart.o
+    0x20000055   0x00000003   PAD
+    0x20000058   0x00000004   Data   RW          415    .data               adc.o
+    0x2000005c   0x00000030   Data   RW          444    .data               run.o
 
 
-    Execution Region ER_ZI (Base: 0x20000080, Size: 0x00000690, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Base: 0x2000008c, Size: 0x00000694, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000080   0x000001f8   Zero   RW          129    .bss                nokia5110.o
-    0x20000278   0x00000038   Zero   RW          211    .bss                texas.o
-    0x200002b0   0x00000060   Zero   RW          490    .bss                c_w.l(libspace.o)
-    0x20000310   0x00000000   Zero   RW            2    HEAP                startup.o
-    0x20000310   0x00000400   Zero   RW            1    STACK               startup.o
+    0x2000008c   0x000001f8   Zero   RW          135    .bss                nokia5110.o
+    0x20000284   0x00000004   PAD
+    0x20000288   0x00000038   Zero   RW          217    .bss                texas.o
+    0x200002c0   0x00000060   Zero   RW          511    .bss                c_w.l(libspace.o)
+    0x20000320   0x00000000   Zero   RW            2    HEAP                startup.o
+    0x20000320   0x00000400   Zero   RW            1    STACK               startup.o
 
 
 ==============================================================================
@@ -880,22 +903,23 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
+       192         26          0          4          0        563   adc.o
        252          8          0          0          0        775   check_winner.o
        676        162          0          4          0       1519   gpio_driver.o
-      1024         88          0          9          0       2301   interrupt.o
+      1204        106          0         20          0       2849   interrupt.o
        190         24          0          0          0       2319   leds.o
        640         72        480          0        504       5650   nokia5110.o
        476         64          0         48          0       2170   run.o
        692        632          0          0       1024        876   startup.o
       1120        244        360         52         56      15900   texas.o
        108         22          0          8          0        713   timer2.o
-       810         80          0          1          0       2587   uart.o
-        22          0          0          0          0       1807   xogame.o
+       966        106          0          1          0       2971   uart.o
+        30          0          0          0          0       1819   xogame.o
 
     ----------------------------------------------------------------------
-      6018       1396        874        128       1584      36617   Object Totals
+      6554       1466        874        140       1588      38124   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         8          0          2          6          0          0   (incl. Padding)
+         8          0          2          3          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -942,15 +966,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      6290       1412        874        128       1680      35113   Grand Totals
-      6290       1412        874        128       1680      35113   ELF Image Totals
-      6290       1412        874        128          0          0   ROM Totals
+      6826       1482        874        140       1684      36464   Grand Totals
+      6826       1482        874        140       1684      36464   ELF Image Totals
+      6826       1482        874        140          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7164 (   7.00kB)
-    Total RW  Size (RW Data + ZI Data)              1808 (   1.77kB)
-    Total ROM Size (Code + RO Data + RW Data)       7292 (   7.12kB)
+    Total RO  Size (Code + RO Data)                 7700 (   7.52kB)
+    Total RW  Size (RW Data + ZI Data)              1824 (   1.78kB)
+    Total ROM Size (Code + RO Data + RW Data)       7840 (   7.66kB)
 
 ==============================================================================
 

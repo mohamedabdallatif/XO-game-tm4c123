@@ -5,3 +5,4 @@
 .\xogame.o: headers/Run.h
 .\xogame.o: headers/UART.h
 .\xogame.o: headers/Leds.h
+.\xogame.o: headers/ADC.h

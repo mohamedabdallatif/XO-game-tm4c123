@@ -9,6 +9,7 @@
 ".\texas.o"
 ".\uart.o"
 ".\leds.o"
+".\adc.o"
 ".\check_winner.o"
 ".\run.o"
 C:\Keil\ARM\RV31\LIB\RTX_CM3.LIB
