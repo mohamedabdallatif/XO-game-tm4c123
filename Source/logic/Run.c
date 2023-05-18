@@ -8,8 +8,8 @@
 
 
 int i = 0, j = 0, position = 1, current_cursor = 1, start;
-char matrix[10]={'a',' ',' ',' ',' ',' ',' ',' ',' ',' '};
-char turn = 'X', x = 'X', o = 'O';
+char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+char turn = 'X';
 int scoreX = 0, scoreO = 0, cursor = 1;
 	extern int flag ;
 	extern int moves;
@@ -83,13 +83,11 @@ void result(){
 }
 
 void Xo_Init(void){
-	Nokia5110_ClearBuffer();
-	Nokia5110_DisplayBuffer();
+			Nokia5110_Clear();
 	Nokia5110_SetCursor(4,1);
 	Nokia5110_OutString("1.Kit");
 	Nokia5110_SetCursor(4,2);
 	Nokia5110_OutString("2.UART");
-	//Nokia5110_DisplayBuffer();
 }
 void Bye(void)
 {		
@@ -108,7 +106,7 @@ void Play_Again(void)
 	cursor=1;
 	for (i = 0; i < 9; i++)
 		matrix[i] = ' '; // erase all drawings in cells matrix
-	turn = 'X', x = 'X', o = 'O';
+	turn = 'X';
 	flag = 0;
 }
 void Print_Result(char turn){
@@ -137,8 +135,8 @@ void Print_Result(char turn){
 			Nokia5110_OutString("Score Y!");
 	    Nokia5110_OutUDec(scoreO);
 		
-			Timer2_Init(150);
-		/*	Nokia5110_Clear();
+			/*Timer2_Init(300);
+			Nokia5110_Clear();
 	
 			Nokia5110_SetCursor(2,2);
 			Nokia5110_OutString("Play Again?");

@@ -15,11 +15,11 @@ char win ;
 int flag =0;
 
 void GPIOPortF_Handler(void){
-	if(GPIO_PORTF_RIS_R &(1<<4) && flag ==3){
+	if(GPIO_PORTF_RIS_R &(1<<0) && flag ==3){
 		// user chooses yes to play again
 		Play_Again();
 	}
-	if(GPIO_PORTF_RIS_R & (1<<0) && flag ==3){
+	if(GPIO_PORTF_RIS_R & (1<<4) && flag ==3){
 	  	// user choose not to play again
 		Bye();
 	}
@@ -36,12 +36,7 @@ void GPIOPortF_Handler(void){
 			UART();
 	} 
 	else if (GPIO_PORTF_RIS_R &(1<<4) && flag==1)  {
-			/*Timer2_Init(20);
-			GPIO_PORTF_ICR_R|= (1<<4);
-			cursor--;
-			if(cursor<1) cursor=9;
-			drawGrid();
-		*/
+			
 		if (turn =='X') Set_Led(0);
 		else Set_Led(2);
 		Timer2_Init(20);
@@ -134,12 +129,16 @@ void GPIOPortB_Handler(void){
 void GPIOPortE_Handler(void){
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
+		Timer2_Init(20);
+			GPIO_PORTF_ICR_R|= (1<<4);
+			cursor--;
+			if(cursor<1) cursor=9;
+			drawGrid();
 		
 	}			
 }
 
 volatile int adcData;
-volatile int posX;
 void ADC0Seq3_Handler (void)
 {
 
