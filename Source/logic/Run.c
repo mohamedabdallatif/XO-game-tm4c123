@@ -98,6 +98,7 @@ void Play_Again(void)
 			for (i = 0; i < 10; i++) matrix[i] = ' '; // erase all drawings in cells matri
 			if (check_uart){
 				char n;
+				flag = 2;
 				Timer2_Init(25);
 				Nokia5110_Clear();
 				Nokia5110_SetCursor(1,2);
@@ -118,10 +119,11 @@ void Play_Again(void)
 							Bye();
 							break;
 				}
-			}
+			}else{
 			Timer2_Init(25);
 		  drawGrid();
 		  flag =1;
+			}
 }
 void Print_Result(char turn){
 		extern int flag ;
@@ -156,6 +158,11 @@ void Print_Result(char turn){
 				Nokia5110_SetCursor(6,3);
 				Nokia5110_OutUDec(scoreO);
 				
+				if(!check_uart){
+					Nokia5110_SetCursor(1,4);
+					Nokia5110_OutString("again?y or n");
+				}
+				
 				Timer2_Init(100);
 		}
 		else if(turn == 'X')
@@ -173,6 +180,12 @@ void Print_Result(char turn){
 				Nokia5110_OutString("oScore");
 				Nokia5110_SetCursor(6,3);
 				Nokia5110_OutUDec(scoreO);
+			
+				if(!check_uart){
+					Nokia5110_SetCursor(1,4);
+					Nokia5110_OutString("again?y or n");
+					}
+			
 				Timer2_Init(100);
 		}
 		else if(turn == 'O')
@@ -190,6 +203,11 @@ void Print_Result(char turn){
 				Nokia5110_OutString("oScore");
 				Nokia5110_SetCursor(6,3);
 				Nokia5110_OutUDec(scoreO);
+			
+				if(!check_uart){
+						Nokia5110_SetCursor(1,4);
+						Nokia5110_OutString("again?y or n");
+						}
 				Timer2_Init(100);
 		}
 				

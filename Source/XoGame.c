@@ -20,13 +20,19 @@
 
 int main(void) {
   TExaS_Init(SSI0_Real_Nokia5110_Scope);  // set system clock to 80 MHz
+	
 	PortE_Init();
+	
 	PortB_Init();
+	
 	PortF_Init();
-	//game_Initialization();
+	
   UART_Init();              // initialize UART
+	
 	Nokia5110_Init();
+	
 	Xo_Init();
+	
 	while(1){
 	}
 }
