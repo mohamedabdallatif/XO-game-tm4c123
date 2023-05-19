@@ -95,7 +95,7 @@ void Play_Again(void)
 			moves = 0;
 			cursor=1;
 			turn = 'X';
-			for (i = 0; i < 10; i++) matrix[i] = ' '; // erase all drawings in cells matri
+			for (i = 0; i < 10; i++) matrix[i] = ' '; // erase all drawings in cells matril
 			if (check_uart){
 				char n;
 				flag = 2;
@@ -120,10 +120,10 @@ void Play_Again(void)
 							break;
 				}
 			}else{
-			Timer2_Init(25);
-		  drawGrid();
-		  flag =1;
-			}
+				Timer2_Init(25);
+				drawGrid();
+				flag =1;
+				}
 }
 void Print_Result(char turn){
 		extern int flag ;

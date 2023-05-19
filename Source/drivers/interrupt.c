@@ -81,7 +81,7 @@ void GPIOPortF_Handler(void){
 
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){
       GPIO_PORTF_ICR_R |= (1<<0);		
-			Timer2_Init(25);
+			Timer2_Init(30);
 			cursor++;
 			if(cursor>9) cursor=1;
 			drawGrid();
