@@ -5,10 +5,9 @@
 #include "../headers/UART.h"
 #include "../headers/Timer2.h"
 #include "../headers/Leds.h"
-#include "../headers/Run.h"
 
 
-int i = 0, j = 0, position = 1, current_cursor = 1, start;
+int i = 0, j = 0, position = 1, current_cursor = 1, start = 0;
 char matrix[10]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
 char turn = 'X';
 int scoreX = 0, scoreO = 0, cursor = 1;
@@ -82,24 +81,10 @@ extern int check_uart;
 void Xo_Init(void){
 		Timer2_Init(25);
 		Nokia5110_Clear();
-		Nokia5110_ClearBuffer();
 		Nokia5110_SetCursor(3,1);
-		Nokia5110_OutString("Choose Mode");
-		Nokia5110_SetCursor(3,2);
 		Nokia5110_OutString("1.Kit");
-		Nokia5110_SetCursor(3,3);
-		Nokia5110_OutString("2.UART");
-		Nokia5110_DisplayBuffer();
-}
-
-void game_Initialization(void){
-		Nokia5110_Clear();
-		Nokia5110_ClearBuffer();
-		Nokia5110_SetCursor(1,1);
-		Nokia5110_OutString("Welcome To");
 		Nokia5110_SetCursor(3,2);
-		Nokia5110_OutString("XO-Game");
-		Nokia5110_DisplayBuffer();
+		Nokia5110_OutString("2.UART");		
 }
 void Play_Again(void)
 {

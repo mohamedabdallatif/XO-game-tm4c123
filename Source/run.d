@@ -6,4 +6,3 @@
 .\run.o: logic\../headers/UART.h
 .\run.o: logic\../headers/Timer2.h
 .\run.o: logic\../headers/Leds.h
-.\run.o: logic\../headers/Run.h

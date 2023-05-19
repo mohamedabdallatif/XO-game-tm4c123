@@ -64,7 +64,7 @@ int check_uart;
 void UART(void){
 	char n;
 	check_uart = 1; 
-	UART_OutString("Instructions:\nd-->left\na-->right\nw-->top\ns-->down\nspace-->Your Turn");
+	UART_OutString("Instructions:\rd-->left\ra-->right\rw-->top\rs-->down\rspace-->Your Turn");
 while(1){
 	if (turn =='X') Set_Led(0);
 	else Set_Led(2);
