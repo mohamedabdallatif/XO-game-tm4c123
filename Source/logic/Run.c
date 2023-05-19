@@ -68,14 +68,6 @@ void drawGrid(void){
 
 }
 
-void Xo_Init(void){
-		Timer2_Init(25);
-		Nokia5110_Clear();
-		Nokia5110_SetCursor(3,1);
-		Nokia5110_OutString("1.Kit");
-		Nokia5110_SetCursor(3,2);
-		Nokia5110_OutString("2.UART");
-}
 void Bye(void)
 {		
 	  Nokia5110_Clear();
@@ -84,17 +76,52 @@ void Bye(void)
 		while(1){
 		}
 }
+void Play_Again(void);
+extern int check_uart;
+void Xo_Init(void){
+		Timer2_Init(25);
+		Nokia5110_Clear();
+		Nokia5110_SetCursor(3,1);
+		Nokia5110_OutString("1.Kit");
+		Nokia5110_SetCursor(3,2);
+		Nokia5110_OutString("2.UART");		
+}
 void Play_Again(void)
 {
-		Nokia5110_Clear();
-		Timer2_Init(25);
-		i = 0, j = 0, position = 1, current_cursor = 1;
-		start=0;
-		moves = 0;
-		cursor=1;
-		flag = 0;
-		for (i = 0; i < 10; i++) matrix[i] = ' '; // erase all drawings in cells matri
-		Xo_Init();
+			Nokia5110_Clear();
+			Timer2_Init(25);
+			i = 0, j = 0, position = 1, current_cursor = 1;
+			start=0;
+			moves = 0;
+			cursor=1;
+			turn = 'X';
+			for (i = 0; i < 10; i++) matrix[i] = ' '; // erase all drawings in cells matri
+			if (check_uart){
+				char n;
+				Timer2_Init(25);
+				Nokia5110_Clear();
+				Nokia5110_SetCursor(1,2);
+				Nokia5110_OutString("again? y or n");
+				check_uart = 0; 
+				UART_OutString("Instructions:\nd-->left\na-->right\nw-->top\ns-->down\nspace-->Your Turn");
+				UART_OutString("\n\rInput:");
+				n = UART_InChar();
+				UART_OutChar(n);
+				UART_OutString("\n\r");
+				switch(n){
+					case 'y':
+							drawGrid();
+							UART();
+							Timer2_Init(25);
+							break;
+					case 'n':
+							Bye();
+							break;
+				}
+			}
+			Timer2_Init(25);
+		  drawGrid();
+		  flag =1;
 }
 void Print_Result(char turn){
 		extern int flag ;
@@ -119,6 +146,17 @@ void Print_Result(char turn){
 				Nokia5110_OutString("WIN!");
 				Timer2_Init(100);
 				Nokia5110_DisplayBuffer();
+				Nokia5110_SetCursor(1,2);
+				Nokia5110_OutString("xScore");
+				Nokia5110_SetCursor(6,2);
+				Nokia5110_OutUDec(scoreX);
+
+				Nokia5110_SetCursor(1,3);
+				Nokia5110_OutString("oScore");
+				Nokia5110_SetCursor(6,3);
+				Nokia5110_OutUDec(scoreO);
+				
+				Timer2_Init(100);
 		}
 		else if(turn == 'X')
 		{	
@@ -126,6 +164,16 @@ void Print_Result(char turn){
 				Nokia5110_DisplayBuffer();
 				Nokia5110_SetCursor(1, 1);
 				Nokia5110_OutString("PlayerX Won");
+				Nokia5110_SetCursor(1,2);
+				Nokia5110_OutString("xScore");
+				Nokia5110_SetCursor(6,2);
+				Nokia5110_OutUDec(scoreX);
+
+				Nokia5110_SetCursor(1,3);
+				Nokia5110_OutString("oScore");
+				Nokia5110_SetCursor(6,3);
+				Nokia5110_OutUDec(scoreO);
+				Timer2_Init(100);
 		}
 		else if(turn == 'O')
 		{
@@ -133,17 +181,19 @@ void Print_Result(char turn){
 				Nokia5110_DisplayBuffer();
 				Nokia5110_SetCursor(1, 1);
 				Nokia5110_OutString("PlayerO Won");
-		}
 				Nokia5110_SetCursor(1,2);
-				Nokia5110_OutString("ScoreX:");
+				Nokia5110_OutString("xScore");
 				Nokia5110_SetCursor(6,2);
 				Nokia5110_OutUDec(scoreX);
 
 				Nokia5110_SetCursor(1,3);
-				Nokia5110_OutString("ScoreO:");
+				Nokia5110_OutString("oScore");
 				Nokia5110_SetCursor(6,3);
 				Nokia5110_OutUDec(scoreO);
-				//Play_Again();
+				Timer2_Init(100);
+		}
+				
+				
 }
 
 

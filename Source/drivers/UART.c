@@ -10,7 +10,7 @@ extern char matrix[10];
 extern char turn;
 extern int cursor;
 extern int moves;
-char won;
+int won;
 //------------UART_Init------------
 // Initialize the UART for 115200 baud rate (assuming 80 MHz UART clock),
 // 8 bit word length, no parity bits, one stop bit, FIFOs enabled
@@ -60,9 +60,10 @@ void UART_OutChar(unsigned char data){ //print
   while((UART0_FR_R&UART_FR_TXFF) != 0);
   UART0_DR_R = data;
 } 
-
+int check_uart;
 void UART(void){
 	char n;
+	check_uart = 1; 
 	UART_OutString("Instructions:\nd-->left\na-->right\nw-->top\ns-->down\nspace-->Your Turn");
 while(1){
 	if (turn =='X') Set_Led(0);
@@ -95,6 +96,7 @@ while(1){
 							Timer2_Init(100);
 							Clear_Led(0);//red led off
 							Print_Result(turn);
+							Play_Again();
 							return;
 						}
 						Clear_Led(0);
@@ -105,9 +107,10 @@ while(1){
 						won = check_winner (matrix, turn);
 						if (won == 1){
 							Flash(2);//red led on
-							Timer2_Init(50);
+							Timer2_Init(100);
 							Clear_Led(2);//red led off
 							Print_Result(turn);
+							Play_Again();
 							return;
 						}
 						Clear_Led(2);
@@ -116,14 +119,15 @@ while(1){
 					moves++;
 					if (!won && moves== 9){
 					Flash(3);//red led on
-					Timer2_Init(50);
+					Timer2_Init(100);
 					Clear_Led(3);//red led off
 					Print_Result('D');
+					Play_Again();
 					return;
 					}
 				drawGrid();
 			}
-			break;	
+			break;
 		case 'w':
 			Timer2_Init(10);
 			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up

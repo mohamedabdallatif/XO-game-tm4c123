@@ -15,27 +15,13 @@ char win ;
 int flag =0;
 
 void GPIOPortF_Handler(void){
-	if(GPIO_PORTF_RIS_R &(1<<0) && flag ==3){
-		// user chooses yes to play again
-			Play_Again();
-			Timer2_Init(25);
-
-	}
-	if(GPIO_PORTF_RIS_R & (1<<1) && flag ==3){
-	  	// user choose not to play again
-			Bye();
-	}
-	
 	if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
 			 Timer2_Init(25);
-			 PortE_Init();
-			 PortB_Init();
 			 drawGrid();
 			 flag =1;
 	}
 	else if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
-				Timer2_Init(25);
-				PortE_Init();
+				Timer2_Init(25);	
 				drawGrid();
 				flag=2;
 				UART();
@@ -132,15 +118,7 @@ void GPIOPortB_Handler(void){
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
 			else	cursor += 3;
 			drawGrid();		
-		}
-	
-	else if(GPIO_PORTB_RIS_R&(1<<1) && flag ==1){	
-		Timer2_Init(20);
-		GPIO_PORTB_ICR_R |= (1<<1);
-		if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
-		else	cursor += 3;
-		drawGrid();		
-	}
+		}	
 }
 
 void GPIOPortE_Handler(void){
@@ -153,20 +131,4 @@ if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)
 			drawGrid();
 		
 	}			
-}
-
-volatile int adcData;
-void ADC0Seq3_Handler (void)
-{
-
-		if((ADC0_RIS_R & (1<<3)) == (1<<3))
-		{
-			//Acknowlege interrupt
-			ADC0_RIS_R |= (1<<3); // CLEAR I BIT
-			Timer2_Init(20);
-			adcData = ADC0_SSFIFO3_R;
-			cursor = (adcData%9);
-			drawGrid();			
-		}
-	
 }
