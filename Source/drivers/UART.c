@@ -73,19 +73,19 @@ while(1){
 	UART_OutString("\n\r");
 	switch(n){
 		case 'd':
-			Timer2_Init(10);
+			Timer2_Init(20);
 			cursor++;
 			if(cursor>9) cursor=1;	
 			drawGrid();
 			break;
 		case 'a':
-			Timer2_Init(10);
+			Timer2_Init(20);
 			cursor--;
 			if(cursor<1) cursor=9;
 			drawGrid();
 			break;
 		case ' ':
-			Timer2_Init(10);
+			Timer2_Init(20);
 			if(matrix[cursor]==' '){
 					if (turn =='X'){
 						matrix[cursor]='X';
@@ -100,7 +100,7 @@ while(1){
 						Clear_Led(0);
 						turn='O';
 					}
-				else{ 
+					else{ 
 						matrix[cursor]='O';
 						won = check_winner (matrix, turn);
 						if (won == 1){
@@ -113,17 +113,17 @@ while(1){
 						Clear_Led(2);
 						turn='X';
 					}
-				moves++;
-				if (!won && moves== 9){
-				Flash(3);//red led on
-				Timer2_Init(50);
-				Clear_Led(3);//red led off
-				Print_Result('D');
+					moves++;
+					if (!won && moves== 9){
+					Flash(3);//red led on
+					Timer2_Init(50);
+					Clear_Led(3);//red led off
+					Print_Result('D');
 					return;
-				}
+					}
 				drawGrid();
-				}
-					break;	
+			}
+			break;	
 		case 'w':
 			Timer2_Init(10);
 			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up

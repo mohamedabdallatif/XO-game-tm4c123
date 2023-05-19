@@ -17,31 +17,36 @@ int flag =0;
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R &(1<<0) && flag ==3){
 		// user chooses yes to play again
-		Play_Again();
+			Play_Again();
+			Timer2_Init(25);
+
 	}
-	if(GPIO_PORTF_RIS_R & (1<<4) && flag ==3){
+	if(GPIO_PORTF_RIS_R & (1<<1) && flag ==3){
 	  	// user choose not to play again
-		Bye();
+			Bye();
 	}
+	
 	if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
+			 Timer2_Init(25);
 			 PortE_Init();
 			 PortB_Init();
 			 drawGrid();
 			 flag =1;
 	}
 	else if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
-			PortE_Init();
-			drawGrid();
-			flag=2;
-			UART();
+				Timer2_Init(25);
+				PortE_Init();
+				drawGrid();
+				flag=2;
+				UART();
 	} 
 	else if (GPIO_PORTF_RIS_R &(1<<4) && flag==1)  {
-			
 		if (turn =='X') Set_Led(0);
 		else Set_Led(2);
-		Timer2_Init(20);
+		
+		Timer2_Init(30);
 		GPIO_PORTF_ICR_R|= (1<<4);
-		Timer2_Init(10);
+		Timer2_Init(20);
 			if(matrix[cursor]==' '){
 					if (turn =='X'){
 						matrix[cursor]='X';
@@ -77,9 +82,9 @@ void GPIOPortF_Handler(void){
 			if (!win && moves == 9){
 					Clear_Led(0);
 					Clear_Led(2);
-					Flash(3);//red led on
+					Flash(3);//yellow led on
 					Timer2_Init(50);
-					Clear_Led(3);//red led off
+					Clear_Led(3);//yellow led off
 					Print_Result('D');
 					Timer2_Init(100);
 					return;
@@ -100,7 +105,19 @@ void GPIOPortF_Handler(void){
 
 
 void GPIOPortB_Handler(void){
-		if (GPIO_PORTB_RIS_R &(1<<0) && flag==1)  
+	
+	if(GPIO_PORTB_RIS_R &(1<<0) && flag ==3){
+		// user chooses yes to play again
+			Play_Again();
+			Timer2_Init(25);
+
+	}
+	if(GPIO_PORTB_RIS_R & (1<<1) && flag ==3){
+	  	// user choose not to play again
+			Bye();
+	}
+	
+	if (GPIO_PORTB_RIS_R &(1<<0) && flag==1)  
 		{
 			Timer2_Init(20);
 			GPIO_PORTB_ICR_R|= (1<<0);
@@ -109,7 +126,7 @@ void GPIOPortB_Handler(void){
 			drawGrid();	
 			}
 		
-		else if(GPIO_PORTB_RIS_R &(1<<1) && flag ==1){	
+	else if(GPIO_PORTB_RIS_R &(1<<1) && flag ==1){	
 			Timer2_Init(20);
 			GPIO_PORTB_ICR_R |= (1<<1);
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
