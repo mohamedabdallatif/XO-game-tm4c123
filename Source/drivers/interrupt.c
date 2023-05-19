@@ -16,12 +16,12 @@ int flag =0;
 
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R &(1<<0) && flag==0){
-			 Timer2_Init(25);
+			 Timer2_Init(10);
 			 drawGrid();
 			 flag =1;
 	}
 	else if(GPIO_PORTF_RIS_R &(1<<4) && flag==0){
-				Timer2_Init(25);	
+				Timer2_Init(10);	
 				drawGrid();
 				flag=2;
 				UART();
@@ -30,14 +30,15 @@ void GPIOPortF_Handler(void){
 		if (turn =='X') Set_Led(0);
 		else Set_Led(2);
 		
-		Timer2_Init(30);
+		Timer2_Init(10);
 		GPIO_PORTF_ICR_R|= (1<<4);
-		Timer2_Init(20);
+		//Timer2_Init(15);
 			if(matrix[cursor]==' '){
 					if (turn =='X'){
 						matrix[cursor]='X';
 						win = check_winner (matrix, turn);
 						if (win == 1){
+							drawGrid();
 							Flash(0);//red led on
 							Timer2_Init(100);
 							Clear_Led(0);//red led off
@@ -53,6 +54,7 @@ void GPIOPortF_Handler(void){
 					matrix[cursor]='O';
 					win = check_winner (matrix, turn);
 					if (win == 1){
+						drawGrid();
 						Flash(2);//red led on
 						Timer2_Init(100);
 						Clear_Led(2);//red led off
@@ -66,6 +68,7 @@ void GPIOPortF_Handler(void){
 				}
 			moves++;
 			if (!win && moves == 9){
+					drawGrid();
 					Clear_Led(0);
 					Clear_Led(2);
 					Flash(3);//yellow led on
@@ -80,9 +83,9 @@ void GPIOPortF_Handler(void){
 	}
 
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){
-			Timer2_Init(25);
+			Timer2_Init(10);
       GPIO_PORTF_ICR_R |= (1<<0);		
-			Timer2_Init(30);
+			//Timer2_Init(15);
 			cursor++;
 			if(cursor>9) cursor=1;
 			drawGrid();
@@ -96,7 +99,7 @@ void GPIOPortB_Handler(void){
 	if(GPIO_PORTB_RIS_R &(1<<0) && flag ==3){
 		// user chooses yes to play again
 			Play_Again();
-			Timer2_Init(25);
+			Timer2_Init(10);
 
 	}
 	if(GPIO_PORTB_RIS_R & (1<<1) && flag ==3){
@@ -106,7 +109,7 @@ void GPIOPortB_Handler(void){
 	
 	if (GPIO_PORTB_RIS_R &(1<<0) && flag==1)  
 		{
-			Timer2_Init(25);
+			Timer2_Init(10);
 			GPIO_PORTB_ICR_R|= (1<<0);
 			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up
 			else	cursor -= 3;
@@ -114,7 +117,7 @@ void GPIOPortB_Handler(void){
 			}
 		
 	else if(GPIO_PORTB_RIS_R &(1<<1) && flag ==1){	
-			Timer2_Init(20);
+			Timer2_Init(10);
 			GPIO_PORTB_ICR_R |= (1<<1);
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code down
 			else	cursor += 3;
@@ -123,7 +126,7 @@ void GPIOPortB_Handler(void){
 }
 
 void GPIOPortE_Handler(void){
-			Timer2_Init(25);
+			Timer2_Init(10);
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
 			GPIO_PORTE_ICR_R|= (1<<1);

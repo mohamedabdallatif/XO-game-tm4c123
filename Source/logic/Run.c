@@ -128,7 +128,7 @@ void Play_Again(void)
 }
 void Print_Result(char turn){
 		extern int flag ;
-		flag = 3;
+		if(!check_uart){flag = 3;}
 		Nokia5110_Clear();
 		Nokia5110_SetCursor(0,0);
 		if(turn == 'D')
