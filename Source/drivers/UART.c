@@ -74,19 +74,19 @@ while(1){
 	UART_OutString("\n\r");
 	switch(n){
 		case 'd':
-			Timer2_Init(20);
+			Timer2_Init(15);
 			cursor++;
 			if(cursor>9) cursor=1;	
 			drawGrid();
 			break;
 		case 'a':
-			Timer2_Init(20);
+			Timer2_Init(15);
 			cursor--;
 			if(cursor<1) cursor=9;
 			drawGrid();
 			break;
 		case ' ':
-			Timer2_Init(20);
+			Timer2_Init(15);
 			if(matrix[cursor]==' '){
 					if (turn =='X'){
 						matrix[cursor]='X';
@@ -129,13 +129,13 @@ while(1){
 			}
 			break;
 		case 'w':
-			Timer2_Init(10);
+			Timer2_Init(15);
 			if(cursor < 4 && cursor > 0)	cursor += 6;   //code up
 			else	cursor -= 3;
 			drawGrid();	
 			break;
 		case 's':
-			Timer2_Init(10);
+			Timer2_Init(15);
 			if(cursor < 10 && cursor > 6)	cursor -= 6;   //code up
 			else	cursor += 3;
 			drawGrid();	

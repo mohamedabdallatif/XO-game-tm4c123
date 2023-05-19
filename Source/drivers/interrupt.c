@@ -80,6 +80,7 @@ void GPIOPortF_Handler(void){
 	}
 
 	else if(GPIO_PORTF_RIS_R &(1<<0) && flag==1){
+			Timer2_Init(25);
       GPIO_PORTF_ICR_R |= (1<<0);		
 			Timer2_Init(30);
 			cursor++;
@@ -122,9 +123,9 @@ void GPIOPortB_Handler(void){
 }
 
 void GPIOPortE_Handler(void){
+			Timer2_Init(25);
 if (GPIO_PORTE_RIS_R &(1<<1) && flag==1)  
 	{
-			Timer2_Init(20);
 			GPIO_PORTE_ICR_R|= (1<<1);
 			cursor--;
 			if(cursor<1) cursor=9;

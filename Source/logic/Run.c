@@ -15,6 +15,7 @@ extern int flag ;
 extern int moves;
 
 void drawGrid(void){
+	Timer2_Init(10);
 	if(start==0){
 		Start_Game();
 		Clear_ALL();
@@ -103,8 +104,8 @@ void Play_Again(void)
 				Nokia5110_Clear();
 				Nokia5110_SetCursor(1,2);
 				Nokia5110_OutString("again? y or n");
-				check_uart = 0; 
-				UART_OutString("Instructions:\nd-->left\na-->right\nw-->top\ns-->down\nspace-->Your Turn");
+				//check_uart = 0; 
+				UART_OutString("Instructions:\rd-->left\ra-->right\rw-->top\rs-->down\rspace-->Your Turn");
 				UART_OutString("\n\rInput:");
 				n = UART_InChar();
 				UART_OutChar(n);
@@ -160,7 +161,7 @@ void Print_Result(char turn){
 				
 				if(!check_uart){
 					Nokia5110_SetCursor(1,4);
-					Nokia5110_OutString("again?y or n");
+					Nokia5110_OutString("again?YorN");
 				}
 				
 				Timer2_Init(100);
@@ -183,7 +184,7 @@ void Print_Result(char turn){
 			
 				if(!check_uart){
 					Nokia5110_SetCursor(1,4);
-					Nokia5110_OutString("again?y or n");
+					Nokia5110_OutString("again?YorN");
 					}
 			
 				Timer2_Init(100);
@@ -206,7 +207,7 @@ void Print_Result(char turn){
 			
 				if(!check_uart){
 						Nokia5110_SetCursor(1,4);
-						Nokia5110_OutString("again?y or n");
+						Nokia5110_OutString("again?YorN");
 						}
 				Timer2_Init(100);
 		}

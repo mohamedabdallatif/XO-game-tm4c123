@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\SpaceInvaders.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\SpaceInvaders.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri May 19 18:26:54 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri May 19 20:17:31 2023
 <BR><P>
 <H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -825,7 +825,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[2b]"></a>GPIOPortF_Handler</STRONG> (Thumb, 504 bytes, Stack size 8 bytes, interrupt.o(i.GPIOPortF_Handler))
+<P><STRONG><a name="[2b]"></a>GPIOPortF_Handler</STRONG> (Thumb, 510 bytes, Stack size 8 bytes, interrupt.o(i.GPIOPortF_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = GPIOPortF_Handler &rArr; UART &rArr;  Play_Again (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGrid
@@ -932,7 +932,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TExaS_Init
 </UL>
 
-<P><STRONG><a name="[9c]"></a>Play_Again</STRONG> (Thumb, 214 bytes, Stack size 8 bytes, run.o(i.Play_Again))
+<P><STRONG><a name="[9c]"></a>Play_Again</STRONG> (Thumb, 208 bytes, Stack size 8 bytes, run.o(i.Play_Again))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Play_Again &rArr; UART &rArr;  Play_Again (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_OutString
@@ -968,7 +968,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ad]"></a>PortF_Init</STRONG> (Thumb, 190 bytes, Stack size 8 bytes, gpio_driver.o(i.PortF_Init))
+<P><STRONG><a name="[ad]"></a>PortF_Init</STRONG> (Thumb, 174 bytes, Stack size 8 bytes, gpio_driver.o(i.PortF_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = PortF_Init
 </UL>
@@ -1030,6 +1030,7 @@ Global Symbols
 
 <P><STRONG><a name="[9b]"></a>Timer2_Init</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, timer2.o(i.Timer2_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawGrid
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Result
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Play_Again
@@ -1118,7 +1119,7 @@ Global Symbols
 <LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPortF_Handler
 </UL>
 
-<P><STRONG><a name="[9d]"></a>drawGrid</STRONG> (Thumb, 372 bytes, Stack size 8 bytes, run.o(i.drawGrid))
+<P><STRONG><a name="[9d]"></a>drawGrid</STRONG> (Thumb, 378 bytes, Stack size 8 bytes, run.o(i.drawGrid))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = drawGrid &rArr; Nokia5110_DisplayBuffer &rArr; Nokia5110_DrawFullImage &rArr; Nokia5110_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
@@ -1129,6 +1130,7 @@ Global Symbols
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_OutChar
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_DisplayBuffer
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_ClearBuffer
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer2_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Play_Again
