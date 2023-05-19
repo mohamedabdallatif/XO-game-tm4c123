@@ -25,6 +25,7 @@ int main(void) {
 	PortF_Init();
   UART_Init();              // initialize UART
 	Nokia5110_Init();
+	game_Initialization();
 	Xo_Init();
 	while(1){
 	}
